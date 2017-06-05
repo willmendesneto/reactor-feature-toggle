@@ -15,6 +15,13 @@
     "README.md",
     "dist"
   ],
+  "keywords": [
+    "react",
+    "reactjs",
+    "feature-toggle",
+    "feature-flag",
+    "reactor-feature-toggle"
+  ],
   "author": "Will Mendes <willmendesneto@gmail.com> (http://github.com/willmendesneto)",
   "devDependencies": {
     "babel-cli": "^6.24.1",
