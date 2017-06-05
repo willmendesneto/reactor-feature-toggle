@@ -1,0 +1,8 @@
+language: node_js
+os:
+  - linux
+  - osx
+before_script:
+  - npm install -g yarn@0.23.4
+  - yarn install
+  - npm test -- -R dot --check-leaks
