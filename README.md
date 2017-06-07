@@ -1,5 +1,7 @@
 # Reactor feature toggle
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/willmendesneto/reactor-feature-toggle.svg)](https://greenkeeper.io/)
+
 [![npm version](https://badge.fury.io/js/reactor-feature-toggle.svg)](http://badge.fury.io/js/reactor-feature-toggle) [![npm downloads](https://img.shields.io/npm/dm/reactor-feature-toggle.svg)](https://npmjs.org/reactor-feature-toggle)
 
 [![Build Status](https://travis-ci.org/willmendesneto/reactor-feature-toggle.svg?branch=master)](https://travis-ci.org/willmendesneto/reactor-feature-toggle)
