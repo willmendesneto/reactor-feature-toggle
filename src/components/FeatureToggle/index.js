@@ -1,10 +1,8 @@
 import React, { PropTypes } from 'react';
-import FeatureToggleService from 'feature-toggle-service';
-
-const featureToggleService = new FeatureToggleService();
+import { isOn } from 'feature-toggle-service';
 
 const FeatureToggle = (props) => {
-  const toggleState = featureToggleService.isOn(props.featureName);
+  const toggleState = isOn(props.featureName);
   const showContent = toggleState === !props.showWhenDisabled;
   return (showContent ? props.children : null);
 };
