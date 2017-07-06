@@ -2,7 +2,7 @@ import React from 'react';
 import { expect } from 'chai';
 import { shallow } from 'enzyme';
 import { FeatureToggle } from '../../../src';
-import FeatureToggleService from 'feature-toggle-service';
+import { setConfigurationObject } from 'feature-toggle-service';
 
 describe('<FeatureToggle />', () => {
   const aChildComponent = <div>Yay I am a child</div>;
@@ -14,11 +14,10 @@ describe('<FeatureToggle />', () => {
   };
 
   let featureToggle;
-  const featureToggleService = new FeatureToggleService();
-  const context = { featureToggleService };
+  const context = { };
 
   before(() => {
-    featureToggleService.setConfigurationObject({
+    setConfigurationObject({
       [featureNames.thisOneIsEnabled]: true,
       [featureNames.thisOneIsDisabled]: false,
     });

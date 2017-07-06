@@ -1,6 +1,6 @@
 {
   "name": "reactor-feature-toggle",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "main": "dist/main.js",
   "scripts": {
     "build": "webpack",
@@ -47,14 +47,14 @@
     "nyc": "^11.0.2",
     "progress-bar-webpack-plugin": "^1.9.3",
     "react-addons-test-utils": "^15.0.2",
+    "react-dom": "^15.0.2",
     "react-test-renderer": "^15.5.4",
     "sinon": "^2.1.0",
     "url-loader": "^0.5.7",
-    "webpack": "^2.6.1",
-    "react-dom": "^15.0.2"
+    "webpack": "^1.12.9"
   },
   "dependencies": {
-    "feature-toggle-service": "^1.1.0",
+    "feature-toggle-service": "^2.0.1",
     "react": "^15.0.2"
   }
 }
