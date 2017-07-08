@@ -3,6 +3,6 @@ os:
   - linux
   - osx
 before_script:
-  - npm install -g yarn@0.23.4
-  - yarn install
-  - npm test -- -R dot --check-leaks
+  - npm install -g --no-progress npm@latest yarn
+  - yarn install --no-progress
+  - yarn test -- -R dot --check-leaks
