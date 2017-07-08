@@ -1,7 +1,8 @@
 require('babel-register')();
 require('babel-polyfill');
 
-const jsdom = require('jsdom').jsdom;
+const jsdom = require("jsdom");
+const { JSDOM } = jsdom;
 
 const exposedProperties = [
   'window',
@@ -9,9 +10,10 @@ const exposedProperties = [
   'document',
 ];
 
-global.document = jsdom('<!doctype html><html><body></body></html>');
-global.window = document.defaultView;
-Object.keys(document.defaultView).forEach((property) => {
+const { window } = new JSDOM('<!doctype html><html><body></body></html>');
+global.document = window.document;
+global.window = window;
+Object.keys(window).forEach((property) => {
   if (typeof global[property] === 'undefined') {
     exposedProperties.push(property);
     global[property] = document.defaultView[property];
