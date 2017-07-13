@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import { objectOf, node, bool } from 'prop-types';
 import { setConfigurationObject } from 'feature-toggle-service';
 
 const FeatureToggleProvider = (props) => {
@@ -9,8 +10,8 @@ const FeatureToggleProvider = (props) => {
 };
 
 FeatureToggleProvider.propTypes = {
-  featureToggleService: PropTypes.objectOf(PropTypes.bool),
-  children: PropTypes.node.isRequired,
+  featureToggleService: objectOf(bool),
+  children: node.isRequired,
 };
 
 export default FeatureToggleProvider;

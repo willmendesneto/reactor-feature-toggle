@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import { string, node, bool } from 'prop-types';
 import { isOn } from 'feature-toggle-service';
 
 const FeatureToggle = (props) => {
@@ -8,9 +9,9 @@ const FeatureToggle = (props) => {
 };
 
 FeatureToggle.propTypes = {
-  featureName: PropTypes.string.isRequired,
-  children: PropTypes.node.isRequired,
-  showWhenDisabled: PropTypes.bool,
+  featureName: string.isRequired,
+  children: node.isRequired,
+  showWhenDisabled: bool,
 };
 
 export default FeatureToggle;
