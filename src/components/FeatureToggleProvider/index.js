@@ -1,17 +1,18 @@
 import React from 'react';
-import { objectOf, node, bool } from 'prop-types';
 import { setConfigurationObject } from 'feature-toggle-service';
 
-const FeatureToggleProvider = (props) => {
+// Type aliases
+type FeatureToggleProviderProps = {
+  featureToggleService: {| [string]: number |} ,
+  children: any,
+};
+
+
+const FeatureToggleProvider = (props: FeatureToggleProviderProps) => {
   setConfigurationObject(
     props.featureToggleService
   );
   return props.children;
-};
-
-FeatureToggleProvider.propTypes = {
-  featureToggleService: objectOf(bool),
-  children: node.isRequired,
 };
 
 export default FeatureToggleProvider;
