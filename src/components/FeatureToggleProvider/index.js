@@ -1,10 +1,11 @@
+// @flow
 import React from 'react';
 import { setConfigurationObject } from 'feature-toggle-service';
 
 // Type aliases
 type FeatureToggleProviderProps = {
   featureToggleService: {| [string]: number |} ,
-  children: any,
+  children?: React.Node,
 };
 
 
