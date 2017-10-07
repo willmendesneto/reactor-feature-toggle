@@ -12,9 +12,9 @@
     "editorconfig-tools-check": "editorconfig-tools check ./src/** ./tests/**",
     "flow": "flow check",
     "flow:stop": "flow stop",
-    "flow:coverage": "flow coverage src/*.js --color",
     "flow-typed:update": "flow-typed update",
-    "flow-typed:install": "flow-typed install"
+    "flow-typed:install": "flow-typed install",
+    "flow:coverage": "flow-coverage-report -i 'src/**/*.js' -t html -t text && open ./flow-coverage/index.html"
   },
   "files": [
     "package.json",
@@ -50,6 +50,7 @@
     "eventsource-polyfill": "^0.9.6",
     "file-loader": "^1.0.0",
     "flow-bin": "^0.56.0",
+    "flow-coverage-report": "^0.3.0",
     "jsdom": "^11.0.0",
     "mocha": "^4.0.0",
     "nyc": "^11.0.2",
