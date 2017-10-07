@@ -13,4 +13,5 @@ install:
 script:
   - yarn run editorconfig-tools-check
   - yarn test -- -R dot --check-leaks
+  - yarn run flow:coverage
   - yarn run build
