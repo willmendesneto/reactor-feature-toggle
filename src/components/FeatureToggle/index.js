@@ -1,17 +1,18 @@
+// @flow
 import React from 'react';
-import { string, node, bool } from 'prop-types';
 import { isOn } from 'feature-toggle-service';
 
-const FeatureToggle = (props) => {
-  const toggleState = isOn(props.featureName);
-  const showContent = toggleState === !props.showWhenDisabled;
-  return (showContent ? props.children : null);
+// Type aliases
+type FeatureToggleProps = {
+  featureName: string,
+  children?: React.Node,
+  showWhenDisabled: boolean,
 };
 
-FeatureToggle.propTypes = {
-  featureName: string.isRequired,
-  children: node.isRequired,
-  showWhenDisabled: bool,
+const FeatureToggle = (props: FeatureToggleProps) => {
+  const toggleState: boolean = isOn(props.featureName);
+  const showContent: boolean = toggleState === !props.showWhenDisabled;
+  return (showContent ? props.children : null);
 };
 
 export default FeatureToggle;
