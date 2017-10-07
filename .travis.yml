@@ -9,7 +9,7 @@ os:
 before_install:
   - npm install -g --no-progress npm@latest yarn
 install:
-  - yarn install --no-progress
+  - yarn install --no-progress -s
 script:
   - yarn run editorconfig-tools-check
   - yarn test -- -R dot --check-leaks
