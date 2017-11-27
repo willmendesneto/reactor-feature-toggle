@@ -78,6 +78,9 @@ export default AppWrapper;
 
 ```
 
+## Releases
+
+We are using `np` package for releases. For more details, please check [`np` Github repository](https://github.com/sindresorhus/np)
 
 ## Author
 
