@@ -1,7 +1,7 @@
 import React from 'react';
 import { expect } from 'chai';
 import { shallow } from 'enzyme';
-import { FeatureToggle } from '../../../src';
+import { FeatureToggle } from '../../src';
 import { setConfigurationObject } from 'feature-toggle-service';
 
 describe('<FeatureToggle />', () => {

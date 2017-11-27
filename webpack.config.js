@@ -1,62 +1,65 @@
-/* eslint prefer-template: 0 */
-/* eslint no-var: 0 */
+const webpack = require('webpack');
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-var path = require('path');
-var webpack = require('webpack');
-
-var entry = path.resolve(__dirname, 'src/index.js');
-
-var sharedConfig = {
+module.exports = {
+  context: path.resolve(__dirname, 'examples/src'),
+  entry: {
+    app: './app.js',
+  },
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, 'examples/dist'),
     filename: '[name].js',
-    library: 'reactor-feature-toggle',
-    libraryTarget: 'umd',
+    publicPath: '/',
   },
-  module:{
-    loaders: [{
-      test: /\.js?$/,
-      loader: 'babel',
-      query: {
-        presets: ['react', 'es2015', 'stage-0'],
+  devServer: {
+    contentBase: path.resolve(__dirname, 'examples/src'),
+    port: 8000,
+  },
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: [/node_modules/],
+        use: [{
+          loader: 'babel-loader',
+          options: { presets: ['es2015'] },
+        }],
       },
-    }],
+      {
+        test: /\.less$/,
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: ['css-loader', 'less-loader'],
+        })
+      },
+      {
+        test: /\.html$/,
+        use: [
+          {
+            loader: 'html-loader',
+          }
+        ]
+      },
+    ],
   },
-  externals: [{
-    'react': {
-      root: 'React',
-      commonjs2: 'react',
-      commonjs: 'react',
-      amd: 'react',
-    },
-  }],
   resolve: {
-    extensions: ['', '.js'],
-  },
-};
-
-var devBundleConfig = Object.assign({}, sharedConfig, {
-  entry: {
-    'main': entry,
-  },
-});
-
-var prodBundleConfig = Object.assign({}, sharedConfig, {
-  entry: {
-      'main.min': entry,
+    alias: {
+      'reactor-feature-toggle': path.resolve(__dirname, 'src/index'),
+    }
   },
   plugins: [
-    new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.optimize.UglifyJsPlugin({
-      compressor: {
-        screw_ie8: true,
-        warnings: false,
-      },
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'common',
+      filename: 'common.js',
+      minChunk: 2,
     }),
-  ],
-});
-
-module.exports = [
-  devBundleConfig,
-  prodBundleConfig,
-];
+    new HtmlWebpackPlugin({
+      filename: 'index.html',
+      inject: false,
+      template: path.resolve(__dirname, 'examples/src/index.html')
+    }),
+    new ExtractTextPlugin('example.css'),
+  ]
+};

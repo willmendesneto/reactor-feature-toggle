@@ -10,8 +10,8 @@ const FeatureToggleProvider = (props) => {
 };
 
 FeatureToggleProvider.propTypes = {
-  featureToggleService: objectOf(bool),
   children: node.isRequired,
+  featureToggleService: objectOf(bool),
 };
 
 export default FeatureToggleProvider;

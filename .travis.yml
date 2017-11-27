@@ -1,16 +1,16 @@
 language: node_js
 cache:
-  yarn: true
   directories:
     - node_modules
 os:
   - linux
   - osx
 before_install:
-  - npm install -g --no-progress npm@latest yarn
+  - npm install -g --no-progress npm@latest
 install:
-  - yarn install --no-progress
+  - npm install --no-progress
 script:
-  - yarn run editorconfig-tools-check
-  - yarn test -- -R dot --check-leaks
-  - yarn run build
+  - npm run editorconfig-tools-check
+  - npm test -- -R dot --check-leaks
+  - npm run coveralls
+  - npm run build

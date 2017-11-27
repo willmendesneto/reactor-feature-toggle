@@ -1,7 +1,9 @@
-require('babel-register')();
-require('babel-polyfill');
+import Enzyme from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
 
-const jsdom = require("jsdom");
+Enzyme.configure({ adapter: new Adapter() });
+
+const jsdom = require('jsdom');
 const { JSDOM } = jsdom;
 
 const exposedProperties = [

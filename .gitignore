@@ -1,8 +1,30 @@
-.DS_Store
-node_modules
+# Logs
+logs
+*.log
+
+# Runtime data
+pids
+*.pid
+*.seed
+
+# Coverage tools
+lib-cov
 coverage
 .nyc_output
-*.log
-dist
+
+# Dependency directory
+node_modules
+bower_components
+
+# Publish directory
+.publish
+
+# Editor artifacts
+.idea
 .vscode
 
+# Other
+.DS_Store
+examples/dist
+
+yarn.lock

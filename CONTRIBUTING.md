@@ -1,6 +1,6 @@
 # How to start
 
-**Note** requires node v6.x.x or higher and npm 3.x.x.
+**Note** requires node v8.x.x or higher and npm 5.x.x.
 
 ```bash
 git clone https://github.com/willmendesneto/reactor-feature-toggle.git

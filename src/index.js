@@ -1,4 +1,5 @@
-import FeatureToggle from './components/FeatureToggle';
-import FeatureToggleProvider from './components/FeatureToggleProvider';
+import FeatureToggle from './FeatureToggle';
+import FeatureToggleProvider from './FeatureToggleProvider';
 
+export default { FeatureToggleProvider, FeatureToggle };
 export { FeatureToggleProvider, FeatureToggle };

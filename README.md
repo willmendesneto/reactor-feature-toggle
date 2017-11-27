@@ -36,6 +36,8 @@ You can get it on NPM installing `reactor-feature-toggle` module as a project de
 
 ```shell
 npm install reactor-feature-toggle --save
+# or
+yarn add reactor-feature-toggle
 ```
 
 

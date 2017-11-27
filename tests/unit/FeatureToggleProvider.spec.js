@@ -1,7 +1,7 @@
 import React from 'react';
 import { expect } from 'chai';
 import { mount } from 'enzyme';
-import { FeatureToggleProvider, FeatureToggle } from '../../../src';
+import { FeatureToggleProvider, FeatureToggle } from '../../src';
 
 describe('<FeatureTogglesProvider />', () => {
 

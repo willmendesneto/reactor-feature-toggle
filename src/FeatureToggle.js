@@ -9,8 +9,8 @@ const FeatureToggle = (props) => {
 };
 
 FeatureToggle.propTypes = {
-  featureName: string.isRequired,
   children: node.isRequired,
+  featureName: string.isRequired,
   showWhenDisabled: bool,
 };
 
