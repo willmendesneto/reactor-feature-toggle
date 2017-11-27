@@ -28,6 +28,8 @@ You can integrate with WebSockets or handling this in a EventSourcing architectu
 * [Install](#install)
 * [Setup](#setup)
 * [Usage](#usage)
+* [Releases](#releases)
+* [Demo](#demo)
 
 
 ## Install
@@ -90,6 +92,13 @@ export default AppWrapper;
 ## Releases
 
 We are using `np` package for releases. For more details, please check [`np` Github repository](https://github.com/sindresorhus/np)
+
+
+
+# Demo
+
+Try out the [demo](https://willmendesneto.github.io/reactor-feature-toggle)!
+
 
 ## Author
 
