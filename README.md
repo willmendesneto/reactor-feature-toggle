@@ -40,6 +40,15 @@ npm install reactor-feature-toggle --save
 yarn add reactor-feature-toggle
 ```
 
+You can also use the standalone UMD build by including `dist/reactor-feature-toggle.js` in your page. If you do this you'll also need to include the dependencies. For example:
+
+```html
+<script src="https://unpkg.com/react@<package-version></package-version>/dist/react.js"></script>
+<script src="https://unpkg.com/react-dom@<package-version>/dist/react-dom.js"></script>
+<script src="https://unpkg.com/prop-types@<package-version>/prop-types.js"></script>
+<script src="https://unpkg.com/reactor-feature-toggle/dist/reactor-feature-toggle.js"></script>
+
+```
 
 ## Setup
 
