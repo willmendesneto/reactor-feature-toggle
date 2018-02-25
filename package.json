@@ -64,7 +64,7 @@
     "sinon": "^4.1.2",
     "style-loader": "^0.20.0",
     "uglify-es": "^3.2.0",
-    "webpack": "^3.8.1",
+    "webpack": "^4.0.0",
     "webpack-dev-server": "^2.9.4"
   },
   "peerDependencies": {
