@@ -8,8 +8,6 @@ react = react && react.hasOwnProperty('default') ? react['default'] : react;
 
 var commonjsGlobal = typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
 
-
-
 function unwrapExports (x) {
 	return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, 'default') ? x['default'] : x;
 }
@@ -32,6 +30,7 @@ var featureToggleService = createCommonjsModule(function (module, exports) {
             factory(exports);
         }
     })(commonjsGlobal, function (exports) {
+
         Object.defineProperty(exports, "__esModule", { value: true });
         var settings = {};
         var isOn = function isOn(key) {
@@ -76,9 +75,6 @@ FeatureToggleProvider.propTypes = {
 };
 
 // This file exists as an entry point for bundling our umd builds.
-// Both in rollup and in webpack, umd builds built from es6 modules are not
-// compatible with mixed imports (which exist in index.js)
-// This file does away with named imports in favor of a single export default.
 
 var index_umd = { FeatureToggleProvider: FeatureToggleProvider, FeatureToggle: FeatureToggle };
 

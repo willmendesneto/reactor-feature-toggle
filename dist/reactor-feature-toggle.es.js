@@ -1,5 +1,5 @@
-import react from 'react';
-import { bool, node, objectOf, string } from 'prop-types';
+import 'react';
+import { string, node, bool, objectOf } from 'prop-types';
 import { isOn, setConfigurationObject } from 'feature-toggle-service';
 
 var FeatureToggle = function FeatureToggle(props) {
@@ -26,5 +26,5 @@ FeatureToggleProvider.propTypes = {
 
 var index = { FeatureToggleProvider: FeatureToggleProvider, FeatureToggle: FeatureToggle };
 
-export { FeatureToggleProvider, FeatureToggle };
 export default index;
+export { FeatureToggleProvider, FeatureToggle };
