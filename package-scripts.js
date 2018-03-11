@@ -14,7 +14,7 @@ module.exports = {
 			babel: 'babel src -d lib',
 			standalone: series(
 				'cp examples/src/standalone.html examples/dist/standalone.html',
-				'lessc examples/src/example.less examples/dist/example.css'
+				'cp examples/src/example.css examples/dist/example.css'
 			),
 		},
 		publish: {

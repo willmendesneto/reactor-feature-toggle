@@ -2,7 +2,7 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './example.less';
+import './example.css';
 
 import AppWrapper from './components/AppWrapper';
 

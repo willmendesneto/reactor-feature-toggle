@@ -28,10 +28,10 @@ module.exports = {
         }],
       },
       {
-        test: /\.less$/,
+        test: /\.css$/,
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
-          use: ['css-loader', 'less-loader'],
+          use: ['css-loader'],
         })
       },
       {
@@ -49,12 +49,20 @@ module.exports = {
       'reactor-feature-toggle': path.resolve(__dirname, 'src/index'),
     }
   },
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        commons: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'common',
+          chunks: 'all',
+          minChunks: 2,
+          enforce: true
+        }
+      }
+    }
+  },
   plugins: [
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'common',
-      filename: 'common.js',
-      minChunk: 2,
-    }),
     new HtmlWebpackPlugin({
       filename: 'index.html',
       inject: false,
