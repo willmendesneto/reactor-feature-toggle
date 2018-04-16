@@ -4,7 +4,7 @@
 
 [![npm version](https://badge.fury.io/js/reactor-feature-toggle.svg)](http://badge.fury.io/js/reactor-feature-toggle) [![npm downloads](https://img.shields.io/npm/dm/reactor-feature-toggle.svg)](https://npmjs.org/reactor-feature-toggle)
 
-[![Build Status](https://travis-ci.org/willmendesneto/reactor-feature-toggle.svg?branch=master)](https://travis-ci.org/willmendesneto/reactor-feature-toggle)
+[![Build Status](https://circleci.com/gh/willmendesneto/reactor-feature-toggle.svg?style=shield)](https://circleci.com/gh/willmendesneto/reactor-feature-toggle)
 [![Coverage Status](https://coveralls.io/repos/willmendesneto/reactor-feature-toggle/badge.svg?branch=master)](https://coveralls.io/r/willmendesneto/reactor-feature-toggle?branch=master)
 [![Dependency Status](https://david-dm.org/willmendesneto/reactor-feature-toggle.svg)](https://david-dm.org/willmendesneto/reactor-feature-toggle)
 
