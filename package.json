@@ -95,7 +95,7 @@
   "bundlesize": [
     {
       "path": "./dist/reactor-feature-toggle.min.js",
-      "threshold": "540B"
+      "threshold": "535B"
     }
   ]
 }

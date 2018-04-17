@@ -46,8 +46,8 @@ export default [
 			name: name,
 			file: path + '.js',
 			format: 'umd',
+      globals,
 		},
-		globals: globals,
 		external: external,
 		plugins: [
       commonjs(defaultCommonjsResolvers),
@@ -61,8 +61,8 @@ export default [
 			name: name,
 			file: path + '.min.js',
 			format: 'umd',
+      globals,
 		},
-		globals: globals,
 		external: external,
 		plugins: [
       commonjs(defaultCommonjsResolvers),
