@@ -18,7 +18,7 @@
 
 	var featureToggleService = createCommonjsModule(function (module, exports) {
 	    /*!
-	     * feature-toggle-service.js v2.0.2
+	     * feature-toggle-service.js v3.0.0
 	     * https://willmendesneto.github.io/feature-toggle-service.js
 	     *
 	     * Licensed MIT © Will Mendes
@@ -37,10 +37,6 @@
 	            return !!settings[key];
 	        };
 	        exports.isOn = isOn;
-	        var isOff = function isOff(key) {
-	            return !isOn(key);
-	        };
-	        exports.isOff = isOff;
 	        var setConfigurationObject = function setConfigurationObject(obj) {
 	            settings = obj;
 	        };
