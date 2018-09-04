@@ -35,7 +35,7 @@
     "create-react-class": "^15.6.2",
     "css-loader": "^1.0.0",
     "editorconfig-tools": "^0.1.1",
-    "enzyme": "^3.4.4",
+    "enzyme": "^3.5.1",
     "enzyme-adapter-react-16": "^1.2.0",
     "eslint": "^5.0.0",
     "eslint-plugin-babel": "^5.0.0",
