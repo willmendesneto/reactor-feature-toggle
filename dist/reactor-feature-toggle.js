@@ -18,7 +18,7 @@
 
 	var featureToggleService = createCommonjsModule(function (module, exports) {
 	    /*!
-	     * feature-toggle-service.js v3.0.0
+	     * feature-toggle-service.js v4.0.0
 	     * https://willmendesneto.github.io/feature-toggle-service.js
 	     *
 	     * Licensed MIT © Will Mendes
@@ -37,16 +37,16 @@
 	            return !!settings[key];
 	        };
 	        exports.isOn = isOn;
-	        var setConfigurationObject = function setConfigurationObject(obj) {
+	        var set = function set(obj) {
 	            settings = obj;
 	        };
-	        exports.setConfigurationObject = setConfigurationObject;
+	        exports.set = set;
 	    });
 	});
 
 	unwrapExports(featureToggleService);
 	var featureToggleService_1 = featureToggleService.isOn;
-	var featureToggleService_2 = featureToggleService.setConfigurationObject;
+	var featureToggleService_2 = featureToggleService.set;
 
 	var FeatureToggle = function FeatureToggle(props) {
 	  var toggleState = featureToggleService_1(props.featureName);

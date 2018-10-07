@@ -1,6 +1,6 @@
 import 'react';
 import { string, node, bool, objectOf } from 'prop-types';
-import { isOn, setConfigurationObject } from 'feature-toggle-service';
+import { isOn, set } from 'feature-toggle-service';
 
 var FeatureToggle = function FeatureToggle(props) {
   var toggleState = isOn(props.featureName);
@@ -15,7 +15,7 @@ FeatureToggle.propTypes = {
 };
 
 var FeatureToggleProvider = function FeatureToggleProvider(props) {
-  setConfigurationObject(props.featureToggleService);
+  set(props.featureToggleService);
   return props.children;
 };
 

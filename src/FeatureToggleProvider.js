@@ -1,11 +1,9 @@
 import React from 'react';
 import { objectOf, node, bool } from 'prop-types';
-import { setConfigurationObject } from 'feature-toggle-service';
+import { set } from 'feature-toggle-service';
 
-const FeatureToggleProvider = (props) => {
-  setConfigurationObject(
-    props.featureToggleService
-  );
+const FeatureToggleProvider = props => {
+  set(props.featureToggleService);
   return props.children;
 };
 
