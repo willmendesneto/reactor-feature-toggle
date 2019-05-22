@@ -62,7 +62,7 @@
     "sinon": "^7.2.4",
     "style-loader": "^0.23.0",
     "uglify-es": "^3.2.0",
-    "webpack": "^4.10.2",
+    "webpack": "^4.32.1",
     "webpack-cli": "^3.0.0",
     "webpack-dev-server": "^3.0.0"
   },
