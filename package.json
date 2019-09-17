@@ -13,7 +13,7 @@
     "url": "https://github.com/willmendesneto/reactor-feature-toggle.git"
   },
   "dependencies": {
-    "cross-env": "^5.1.6",
+    "cross-env": "^6.0.0",
     "feature-toggle-service": "^4.0.0",
     "prop-types": "^15.6.0"
   },
