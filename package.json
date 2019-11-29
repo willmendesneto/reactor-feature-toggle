@@ -39,7 +39,7 @@
     "enzyme-adapter-react-16": "^1.4.0",
     "eslint": "^5.0.0",
     "eslint-plugin-babel": "^5.0.0",
-    "eslint-plugin-react": "^7.5.1",
+    "eslint-plugin-react": "7.16.0",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "gh-pages": "^2.0.0",
     "html-loader": "^0.5.1",
