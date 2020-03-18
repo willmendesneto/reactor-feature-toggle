@@ -46,7 +46,7 @@
     "html-webpack-plugin": "^3.0.0",
     "istanbul": "^0.4.5",
     "jsdom": "^13.0.0",
-    "mocha": "^6.0.0",
+    "mocha": "^7.1.1",
     "nps": "^5.7.1",
     "nps-utils": "^1.5.0",
     "nyc": "^13.2.0",
