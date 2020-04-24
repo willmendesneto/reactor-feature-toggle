@@ -60,7 +60,7 @@
     "rollup-plugin-node-resolve": "^4.0.0",
     "rollup-plugin-uglify": "^4.0.0",
     "sinon": "^7.2.4",
-    "style-loader": "^0.23.0",
+    "style-loader": "^1.2.0",
     "uglify-es": "^3.2.0",
     "webpack": "^4.10.2",
     "webpack-cli": "^3.0.0",
