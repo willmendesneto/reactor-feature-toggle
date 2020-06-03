@@ -10,11 +10,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Updated
 
 - Bumping `feature-toggle-service` to 4.0.0
-- Decreasing bundle size to `511B`
+- Decreasing bundle size to `303B`
+- Migrated Test Framework from Mocha to Jest
 
 ### Fixed
 
 - Adding missed dependencies
+- Adding different build distrubutions: UMD, CommonJS, ES2015 and ESM
 
 ### Added
 
