@@ -46,8 +46,7 @@ You can also use the standalone UMD build by including `dist/reactor-feature-tog
 ```html
 <script src="https://unpkg.com/react@<package-version></package-version>/dist/react.js"></script>
 <script src="https://unpkg.com/react-dom@<package-version>/dist/react-dom.js"></script>
-<script src="https://unpkg.com/prop-types@<package-version>/prop-types.js"></script>
-<script src="https://unpkg.com/reactor-feature-toggle/dist/reactor-feature-toggle.js"></script>
+<script src="https://unpkg.com/reactor-feature-toggle/dist/umd/reactor-feature-toggle.js"></script>
 ```
 
 ## Setup
