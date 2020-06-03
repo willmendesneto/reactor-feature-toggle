@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][]
 
+## [3.0.0][] - 2020-06-03
+
 ### Updated
 
 - Bumping `feature-toggle-service` to 4.0.0
@@ -22,3 +24,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 
 - Decreasing the bundle size to 1KB minified and Gzipped
+
+
+[Unreleased]: https://github.com/willmendesneto/reactor-feature-toggle/compare/v3.0.0...HEAD
+[3.0.0]: https://github.com/willmendesneto/reactor-feature-toggle/tree/v3.0.0
