@@ -44,9 +44,6 @@ module.exports = {
     'react-hooks/exhaustive-deps': ['warn'],
     'react/prop-types': ['off'],
     'no-restricted-globals': ['error'].concat(restrictedGlobals),
-    // 'react/jsx-no-undef': 'error',
-    // 'react/jsx-uses-react': 'error',
-    // 'react/jsx-uses-vars': 'error',
 
     'react/jsx-boolean-value': 1,
     'react/jsx-no-undef': 1,

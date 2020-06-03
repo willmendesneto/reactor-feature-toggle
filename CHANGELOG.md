@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Bumping `feature-toggle-service` to 4.0.0
 - Decreasing bundle size to `303B`
 - Migrated Test Framework from Mocha to Jest
+- Code Cleanup
 
 ### Fixed
 
