@@ -1,0 +1,41 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "preserveConstEnums": true,
+    "jsx": "react",
+    "typeRoots": ["./node_modules/@types", "types"],
+    // "aqui": "já foi",
+
+    "allowJs": false,
+    // "strict": true,
+    "allowSyntheticDefaultImports": true,
+    // "declaration": true,
+    "experimentalDecorators": true,
+    "downlevelIteration": true,
+    // https://github.com/angular/angular-cli/issues/13886#issuecomment-471927518
+    "importHelpers": true,
+    "noFallthroughCasesInSwitch": true,
+    // "noUnusedLocals": true,
+    // "sourceMap": true,
+    // "esModuleInterop": true,
+    "baseUrl": "./",
+    /* Basic Options */
+    "module": "commonjs",
+    // "module": "esnext",
+    "lib": ["es2018", "dom", "es5", "scripthost"],
+    "emitDecoratorMetadata": true,
+    // "lib": ["es2018", "dom"],
+    // "target": "ES5" /* Specify ECMAScript target version: 'ES3' (default), 'ES5', 'ES2015', 'ES2016', 'ES2017', or 'ESNEXT'. */,
+    "declaration": true /* Generates corresponding '.d.ts' file. */,
+    "sourceMap": false /* Generates corresponding '.map' file. */,
+    "outDir": "lib" /* Redirect output structure to the directory. */,
+    "rootDir": "src" /* Specify the root directory of input files. Use to control the output directory structure with --outDir. */,
+    "removeComments": false /* Do not emit comments to output. */,
+    /* Strict Type-Checking Options */
+    "strict": true /* Enable all strict type-checking options. */,
+    "noImplicitAny": true /* Raise error on expressions and declarations with an implied 'any' type. */
+  },
+  "include": ["src/**/*", "examples/**/*"]
+}

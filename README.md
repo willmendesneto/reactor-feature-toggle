@@ -13,24 +13,23 @@
 
 Your module to handle with [feature toggles](http://martinfowler.com/bliki/FeatureToggle.html) in ReactJS applications easier.
 
-
 ## Why Feature toggle?
 
 > This is a common concept, but why use this directive instead solve it via server-side rendering?
 
 The idea of this directive is make this process transparent and easier. So the main point is integrate this directive with other tooling process, such as:
+
 - Server-side rendering;
 - Progressive rendering;
 - Any other that yoy like :)
 
 You can integrate with WebSockets or handling this in a EventSourcing architecture. It's totally transparent for you and you can integrate easier in your application.
 
-* [Install](#install)
-* [Setup](#setup)
-* [Usage](#usage)
-* [Releases](#releases)
-* [Demo](#demo)
-
+- [Install](#install)
+- [Setup](#setup)
+- [Usage](#usage)
+- [Releases](#releases)
+- [Demo](#demo)
 
 ## Install
 
@@ -49,7 +48,6 @@ You can also use the standalone UMD build by including `dist/reactor-feature-tog
 <script src="https://unpkg.com/react-dom@<package-version>/dist/react-dom.js"></script>
 <script src="https://unpkg.com/prop-types@<package-version>/prop-types.js"></script>
 <script src="https://unpkg.com/reactor-feature-toggle/dist/reactor-feature-toggle.js"></script>
-
 ```
 
 ## Setup
@@ -57,26 +55,29 @@ You can also use the standalone UMD build by including `dist/reactor-feature-tog
 You'll need to import `FeatureToggleProvider` and add it into the root component of your application. So that you can enable/disable features via `FeatureToggle` component any place in your application.
 
 ```javascript
-import React, { Component } from 'react'
-import { FeatureToggleProvider, FeatureToggle } from 'reactor-feature-toggle'
+import React, { Component } from 'react';
+import { FeatureToggleProvider, FeatureToggle } from 'reactor-feature-toggle';
 
 const AppWrapper = () => {
   const featureToggleData = {
     enableMainContent: true,
-    enableSecondContent: false
+    enableSecondContent: false,
   };
 
   return (
-    <FeatureToggleProvider featureToggleService={featureToggleData} >
+    <FeatureToggleProvider featureToggleService={featureToggleData}>
       <div>
-        <FeatureToggle featureName={'enableMainContent'} >
+        <FeatureToggle featureName={'enableMainContent'}>
           <div className="content">
             <p>This content is enabled</p>
-            <FeatureToggle featureName={'enableSecondContent'} >
+            <FeatureToggle featureName={'enableSecondContent'}>
               <p>This content is disabled</p>
             </FeatureToggle>
             <FeatureToggle featureName={'enableSecondContent'} showWhenDisabled>
-              <p>This content is disabled, but should be displayed since it has `showWhenDisabled` property</p>
+              <p>
+                This content is disabled, but should be displayed since it has
+                `showWhenDisabled` property
+              </p>
             </FeatureToggle>
           </div>
         </FeatureToggle>
@@ -86,22 +87,25 @@ const AppWrapper = () => {
 };
 
 export default AppWrapper;
-
 ```
 
 ## Releases
 
 We are using `np` package for releases. For more details, please check [`np` Github repository](https://github.com/sindresorhus/np)
 
-
-
 # Demo
 
 Try out the [demo](https://willmendesneto.github.io/reactor-feature-toggle)!
 
+## Publish
+
+this project is using `np` package to publish, which makes things straightforward. EX: `np <patch|minor|major>`
+
+> For more details, [please check np package on npmjs.com](https://www.npmjs.com/package/np)
 
 ## Author
 
 **Wilson Mendes (willmendesneto)**
-+ <https://twitter.com/willmendesneto>
-+ <http://github.com/willmendesneto>
+
+- <https://twitter.com/willmendesneto>
+- <http://github.com/willmendesneto>
