@@ -7,6 +7,24 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][]
 
+### Updated
+
+- Update demo example to use Stackblitz
+- Updating Github templates
+
+## [4.0.3][] - 2020-06-14
+
+### Updated
+
+- Update demo example to use Stackblitz
+- Updating Github templates
+
+## [4.0.2][] - 2020-06-14
+
+### Updated
+
+- Minor changes
+
 ## [4.0.1][] - 2020-06-14
 
 ### Updated
@@ -119,7 +137,9 @@ And pass `featureName` prop with `!` prefix to keep the same behavior on WebApp
 [3.0.0]: https://github.com/willmendesneto/reactor-feature-toggle/tree/v3.0.0
 [unreleased]: https://github.com/willmendesneto/reactor-feature-toggle/compare/v4.0.0...HEAD
 [4.0.0]: https://github.com/willmendesneto/reactor-feature-toggle/tree/v4.0.0
-
-
-[Unreleased]: https://github.com/willmendesneto/reactor-feature-toggle/compare/v4.0.1...HEAD
+[unreleased]: https://github.com/willmendesneto/reactor-feature-toggle/compare/v4.0.2...HEAD
+[4.0.2]: https://github.com/willmendesneto/reactor-feature-toggle/compare/v4.0.1...v4.0.2
 [4.0.1]: https://github.com/willmendesneto/reactor-feature-toggle/tree/v4.0.1
+[unreleased]: https://github.com/willmendesneto/reactor-feature-toggle/compare/v4.0.3...HEAD
+[4.0.3]: https://github.com/willmendesneto/reactor-feature-toggle/tree/v4.0.3
+[unreleased]: https://github.com/willmendesneto/reactor-feature-toggle/compare/v4.0.3...HEAD
