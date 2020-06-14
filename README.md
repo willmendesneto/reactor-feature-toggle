@@ -1,6 +1,7 @@
 # Reactor feature toggle
 
 [![Greenkeeper badge](https://badges.greenkeeper.io/willmendesneto/reactor-feature-toggle.svg)](https://greenkeeper.io/)
+[![npm](https://img.shields.io/badge/stackblitz-online-orange.svg)](https://stackblitz.com/edit/reactor-feature-toggle-sample)
 
 [![npm version](https://badge.fury.io/js/reactor-feature-toggle.svg)](http://badge.fury.io/js/reactor-feature-toggle) [![npm downloads](https://img.shields.io/npm/dm/reactor-feature-toggle.svg)](https://npmjs.org/reactor-feature-toggle)
 
@@ -118,7 +119,7 @@ export default AppWrapper;
 
 # Demo
 
-Try out the [demo](https://willmendesneto.github.io/reactor-feature-toggle)!
+Try out the [demo](https://stackblitz.com/edit/reactor-feature-toggle-sample)!
 
 ## Publish
 
