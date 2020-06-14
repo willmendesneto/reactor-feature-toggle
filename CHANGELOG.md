@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][]
 
+## [4.0.0][] - 2020-06-14
+
 ### Added
 
 - Supporting `!` prefix to change the boolean value to false on the `featureName` props check
@@ -108,3 +110,7 @@ And pass `featureName` prop with `!` prefix to keep the same behavior on WebApp
 
 [unreleased]: https://github.com/willmendesneto/reactor-feature-toggle/compare/v3.0.0...HEAD
 [3.0.0]: https://github.com/willmendesneto/reactor-feature-toggle/tree/v3.0.0
+
+
+[Unreleased]: https://github.com/willmendesneto/reactor-feature-toggle/compare/v4.0.0...HEAD
+[4.0.0]: https://github.com/willmendesneto/reactor-feature-toggle/tree/v4.0.0
