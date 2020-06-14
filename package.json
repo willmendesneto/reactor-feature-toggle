@@ -112,7 +112,7 @@
   "bundlesize": [
     {
       "path": "./dist/umd/reactor-feature-toggle.min.js",
-      "maxSize": "303B"
+      "maxSize": "352B"
     },
     {
       "path": "./dist/cjs/index.js",

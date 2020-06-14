@@ -18,8 +18,15 @@ describe('<FeatureTogglesProvider />', () => {
           <FeatureToggle featureName={'thisOneIsEnabled'}>
             <div className="content">
               <p>Enabled content</p>
+              <FeatureToggle featureName={'!thisOneIsDisable'}>
+                <p>Another enabled content</p>
+              </FeatureToggle>
+
               <FeatureToggle featureName={'thisOneIsDisable'}>
                 <p>Disabled content</p>
+              </FeatureToggle>
+              <FeatureToggle featureName={'!thisOneIsEnabled'}>
+                <p>Another Disabled content</p>
               </FeatureToggle>
             </div>
           </FeatureToggle>
@@ -30,9 +37,13 @@ describe('<FeatureTogglesProvider />', () => {
 
   it('should render the enabled children content', () => {
     expect(featureToggleProvider.text()).toContain('Enabled content');
+    expect(featureToggleProvider.text()).toContain('Another enabled content');
   });
 
   it('should NOT render the disabled content', () => {
     expect(featureToggleProvider.text()).not.toContain('Disabled content');
+    expect(featureToggleProvider.text()).not.toContain(
+      'Another disabled content'
+    );
   });
 });

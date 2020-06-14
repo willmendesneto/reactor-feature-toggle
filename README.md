@@ -60,6 +60,7 @@ import { FeatureToggleProvider, FeatureToggle } from 'reactor-feature-toggle';
 const AppWrapper = () => {
   const featureToggleData = {
     enableMainContent: true,
+    enableDescriptionContent: true,
     enableSecondContent: false,
   };
 
@@ -72,12 +73,39 @@ const AppWrapper = () => {
             <FeatureToggle featureName={'enableSecondContent'}>
               <p>This content is disabled</p>
             </FeatureToggle>
-            <FeatureToggle featureName={'enableSecondContent'} showWhenDisabled>
+            <FeatureToggle featureName={'!enableSecondContent'}>
               <p>
                 This content is disabled, but should be displayed since it has
-                `showWhenDisabled` property
+                `!` prefix at `featureName`
               </p>
             </FeatureToggle>
+          </div>
+        </FeatureToggle>
+
+        <FeatureToggle
+          featureName={['enableMainContent', 'enableDescriptionContent']}
+        >
+          <div className="content">
+            <p>
+              This content is enabled since `enableMainContent` and
+              `enableDescriptionContent` are both truthly
+            </p>
+          </div>
+        </FeatureToggle>
+
+        <FeatureToggle
+          featureName={['enableMainContent', '!enableDescriptionContent']}
+        >
+          <div className="content">
+            <p>
+              This content is disabled because `enableMainContent` is truthly
+              and `enableSecondContent` is falsy when using `!` prefix on array
+              of configuration passed via props.
+            </p>
+            <p>
+              This can be used as a fallback if both feature toggles are not
+              enabled, as an example
+            </p>
           </div>
         </FeatureToggle>
       </div>

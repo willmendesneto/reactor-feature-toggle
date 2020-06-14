@@ -18,10 +18,10 @@ module.exports = {
   // An object that configures minimum threshold enforcement for coverage results
   coverageThreshold: {
     global: {
-      branches: 100,
+      branches: 87,
       functions: 100,
-      lines: 100,
-      statements: 100,
+      lines: 92,
+      statements: 92,
     },
   },
   // A preset that is used as a base for Jest's configuration

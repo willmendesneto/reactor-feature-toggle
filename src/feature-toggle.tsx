@@ -4,15 +4,42 @@ import { isOn } from 'feature-toggle-service';
 
 export interface FeatureToggleProps {
   children?: ReactNode;
-  featureName: string;
+  featureName: string[] | string;
   showWhenDisabled?: boolean;
 }
+
+/**
+ * Checks if feature toggle is turned on of turned off
+ *
+ * @param {string} toggle: name of the feature toggle previously configured via `FeatureToggleProvider`
+ *
+ * @returns boolean
+ */
+
+/**
+ *
+ *
+ * @param {(string[] | string)} featureName: : name of the feature toggle previously configured via `FeatureToggleProvider`
+ *
+ * @returns boolean
+ */
+const isOnCheck = (featureName: string[] | string) => {
+  const isFeatureToggleOn = (toggle: string) =>
+    toggle[0] === '!' ? !isOn(toggle.replace('!', '')) : isOn(toggle);
+
+  if (typeof featureName === 'string') {
+    return isFeatureToggleOn(featureName as string);
+  } else if (Array.isArray(featureName)) {
+    return (featureName as string[]).every(isFeatureToggleOn);
+  }
+
+  return false;
+};
 
 export const FeatureToggle: FC<FeatureToggleProps> = (
   props
 ): ReactElement<any> | null => {
-  const toggleState = isOn(props.featureName);
-  const showContent = toggleState === !props.showWhenDisabled;
+  const showContent = isOnCheck(props.featureName);
 
   return showContent ? (props.children as ReactElement<any>) : null;
 };
