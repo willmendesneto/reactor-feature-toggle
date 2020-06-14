@@ -1,6 +1,6 @@
 {
   "name": "reactor-feature-toggle",
-  "version": "4.0.3",
+  "version": "4.0.4",
   "description": "Your module to handle with feature toggles in ReactJS applications easier",
   "author": "Will Mendes <willmendesneto@gmail.com> (http://github.com/willmendesneto)",
   "keywords": [
