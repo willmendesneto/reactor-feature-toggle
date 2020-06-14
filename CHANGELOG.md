@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][]
 
+### Updated
+
+- Update demo example to use Stackblitz
+- Updating Github templates
+
 ## [4.0.0][] - 2020-06-14
 
 ### Added
@@ -110,7 +115,5 @@ And pass `featureName` prop with `!` prefix to keep the same behavior on WebApp
 
 [unreleased]: https://github.com/willmendesneto/reactor-feature-toggle/compare/v3.0.0...HEAD
 [3.0.0]: https://github.com/willmendesneto/reactor-feature-toggle/tree/v3.0.0
-
-
-[Unreleased]: https://github.com/willmendesneto/reactor-feature-toggle/compare/v4.0.0...HEAD
+[unreleased]: https://github.com/willmendesneto/reactor-feature-toggle/compare/v4.0.0...HEAD
 [4.0.0]: https://github.com/willmendesneto/reactor-feature-toggle/tree/v4.0.0
