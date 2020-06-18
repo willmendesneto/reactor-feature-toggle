@@ -54,7 +54,6 @@
     "vc": "version-changelog CHANGELOG.md"
   },
   "dependencies": {
-    "@atlaskit/button": "^13.4.0",
     "feature-toggle-service": "^5.0.1",
     "tslib": "^2.0.0"
   },

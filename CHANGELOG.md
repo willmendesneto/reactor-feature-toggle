@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][]
 
+### Fixed
+
+- Decreasing package download time
+
 ## [4.0.4][] - 2020-06-14
 
 ### Updated
@@ -145,7 +149,5 @@ And pass `featureName` prop with `!` prefix to keep the same behavior on WebApp
 [unreleased]: https://github.com/willmendesneto/reactor-feature-toggle/compare/v4.0.3...HEAD
 [4.0.3]: https://github.com/willmendesneto/reactor-feature-toggle/tree/v4.0.3
 [unreleased]: https://github.com/willmendesneto/reactor-feature-toggle/compare/v4.0.3...HEAD
-
-
-[Unreleased]: https://github.com/willmendesneto/reactor-feature-toggle/compare/v4.0.4...HEAD
+[unreleased]: https://github.com/willmendesneto/reactor-feature-toggle/compare/v4.0.4...HEAD
 [4.0.4]: https://github.com/willmendesneto/reactor-feature-toggle/tree/v4.0.4
