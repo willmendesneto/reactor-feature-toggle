@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][]
 
+## [5.0.0][] - 2020-07-20
+
 ### Updated
 
 - Breaking changes: updating `feature-toggle-service` to version 6.0.0. The new package behavior introduces combination instead of overriding. Since it's a different feature, it can affect nested provider components.
@@ -159,3 +161,7 @@ And pass `featureName` prop with `!` prefix to keep the same behavior on WebApp
 [4.0.4]: https://github.com/willmendesneto/reactor-feature-toggle/tree/v4.0.4
 [unreleased]: https://github.com/willmendesneto/reactor-feature-toggle/compare/v4.0.5...HEAD
 [4.0.5]: https://github.com/willmendesneto/reactor-feature-toggle/tree/v4.0.5
+
+
+[Unreleased]: https://github.com/willmendesneto/reactor-feature-toggle/compare/v5.0.0...HEAD
+[5.0.0]: https://github.com/willmendesneto/reactor-feature-toggle/tree/v5.0.0
