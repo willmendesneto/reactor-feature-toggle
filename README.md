@@ -54,6 +54,8 @@ You can also use the standalone UMD build by including `dist/reactor-feature-tog
 
 You'll need to import `FeatureToggleProvider` and add it into the root component of your application. So that you can enable/disable features via `FeatureToggle` component any place in your application.
 
+Also, multiple `FeatureToggleProvider` are allowed, which gives more flexibility for your application.
+
 ```javascript
 import React, { Component } from 'react';
 import { FeatureToggleProvider, FeatureToggle } from 'reactor-feature-toggle';
