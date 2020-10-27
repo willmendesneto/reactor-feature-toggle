@@ -55,7 +55,7 @@
   },
   "dependencies": {
     "feature-toggle-service": "^6.0.0",
-    "tslib": "^2.0.1"
+    "tslib": "^2.0.2"
   },
   "devDependencies": {
     "@babel/cli": "^7.5.5",
