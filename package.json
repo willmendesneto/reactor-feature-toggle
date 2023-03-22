@@ -54,7 +54,7 @@
     "vc": "version-changelog CHANGELOG.md"
   },
   "dependencies": {
-    "feature-toggle-service": "^6.0.0",
+    "feature-toggle-service": "^6.1.0",
     "tslib": "^2.3.0"
   },
   "devDependencies": {
