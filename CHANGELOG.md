@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][]
 
+### Fixed
+
+- Fixed exported library types
+
 ## [6.0.0][] - 2025-12-04
 
 ### Updated
