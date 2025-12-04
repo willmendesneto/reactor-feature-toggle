@@ -41,5 +41,5 @@ export const FeatureToggle: FC<FeatureToggleProps> = (
 ): ReactElement<any> | null => {
   const showContent = isOnCheck(props.featureName);
 
-  return showContent ? (props.children as ReactElement<any>) : null;
+  return showContent ? (props.children as ReactElement) : null;
 };
