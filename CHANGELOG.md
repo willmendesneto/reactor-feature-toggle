@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][]
 
+## [6.0.0][] - 2025-12-04
+
 ### Updated
 
 - Updating peerDependencies to accept react and react-dom >= v16
@@ -167,5 +169,6 @@ And pass `featureName` prop with `!` prefix to keep the same behavior on WebApp
 [4.0.5]: https://github.com/willmendesneto/reactor-feature-toggle/tree/v4.0.5
 
 
-[Unreleased]: https://github.com/willmendesneto/reactor-feature-toggle/compare/v5.0.0...HEAD
+[Unreleased]: https://github.com/willmendesneto/reactor-feature-toggle/compare/v6.0.0...HEAD
+[6.0.0]: https://github.com/willmendesneto/reactor-feature-toggle/compare/v5.0.0...v6.0.0
 [5.0.0]: https://github.com/willmendesneto/reactor-feature-toggle/tree/v5.0.0
