@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][]
 
+### Updated
+
+- Updating peerDependencies to accept react and react-dom >= v16
+
 ## [5.0.0][] - 2020-07-20
 
 ### Updated

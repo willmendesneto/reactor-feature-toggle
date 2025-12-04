@@ -133,5 +133,4 @@ this project is using `np` package to publish, which makes things straightforwar
 
 **Wilson Mendes (willmendesneto)**
 
-- <https://twitter.com/willmendesneto>
 - <http://github.com/willmendesneto>
