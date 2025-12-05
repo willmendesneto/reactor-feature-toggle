@@ -7,6 +7,19 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][]
 
+### Fixed
+
+- Forcing `uglify-js` to `3.9.4` to fix ie flag issue
+
+### Updated
+
+- Upgrading react to v18 for `useContext()` support
+- Upgrade package to React v18
+- Upgrade package to Nodejs v22
+- Moving away from jest in favor of Vitest
+- Breaking change: bundle distribution changes:
+  - bundles are now available only in `cjs`, `esm` and `umd` formats
+
 ## [6.1.0][] - 2025-12-04
 
 ### Added

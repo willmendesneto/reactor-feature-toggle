@@ -10,3 +10,5 @@ local-scripts/
 .vscode
 .jest
 src/webpack/__tests__/__fixtures__/webpack/output
+.tsbuildinfo
+*.tsbuildinfo

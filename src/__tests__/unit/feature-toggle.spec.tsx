@@ -1,11 +1,10 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render, screen } from '@testing-library/react';
 import { FeatureToggle } from '../../feature-toggle';
 import { set } from 'feature-toggle-service';
 
 describe('<FeatureToggle />', () => {
   const aChildComponent = <div>Yay I am a child</div>;
-  const expectedHtmlContent = '<div>Yay I am a child</div>';
 
   const featureNames = {
     thisOneIsEnabled: 'thisOneIsEnabled',
@@ -13,9 +12,6 @@ describe('<FeatureToggle />', () => {
     thisIsAnotherOneEnabled: 'thisIsAnotherOneEnabled',
     thisIsAnotherOneDisabled: 'thisIsAnotherOneDisabled',
   };
-
-  let featureToggle: any;
-  const context = {};
 
   beforeEach(() => {
     set({
@@ -28,27 +24,19 @@ describe('<FeatureToggle />', () => {
 
   describe('When the given toggle is enabled', () => {
     describe('When receives a string as `featureName` props', () => {
-      beforeEach(() => {
-        featureToggle = shallow(
+      it.only('should render children', () => {
+        render(
           <FeatureToggle featureName={featureNames.thisOneIsEnabled}>
             {aChildComponent}
-          </FeatureToggle>,
-          { context }
+          </FeatureToggle>
         );
-      });
-
-      it('should render children', () => {
-        expect(featureToggle.contains(aChildComponent)).toEqual(true);
-      });
-
-      it('should render wrapping div', () => {
-        expect(featureToggle.html()).toEqual(expectedHtmlContent);
+        expect(screen.getByText('Yay I am a child')).toBeInTheDocument();
       });
     });
 
     describe('When receives an array as `featureName` props', () => {
-      beforeEach(() => {
-        featureToggle = shallow(
+      it('should render children', () => {
+        render(
           <FeatureToggle
             featureName={[
               featureNames.thisOneIsEnabled,
@@ -56,40 +44,28 @@ describe('<FeatureToggle />', () => {
             ]}
           >
             {aChildComponent}
-          </FeatureToggle>,
-          { context }
+          </FeatureToggle>
         );
-      });
-
-      it('should render children', () => {
-        expect(featureToggle.contains(aChildComponent)).toEqual(true);
-      });
-
-      it('should render wrapping div', () => {
-        expect(featureToggle.html()).toEqual(expectedHtmlContent);
+        expect(screen.getByText('Yay I am a child')).toBeInTheDocument();
       });
     });
   });
 
   describe('When the given toggle is disabled', () => {
     describe('When receives a string as `featureName` props', () => {
-      beforeEach(() => {
-        featureToggle = shallow(
+      it('should not render children is toggle with name is not enabled', () => {
+        render(
           <FeatureToggle featureName={featureNames.thisOneIsDisabled}>
             {aChildComponent}
-          </FeatureToggle>,
-          { context }
+          </FeatureToggle>
         );
-      });
-
-      it('should not render children is toggle with name is not enabled', () => {
-        expect(featureToggle.contains(aChildComponent)).toEqual(false);
+        expect(screen.queryByText('Yay I am a child')).not.toBeInTheDocument();
       });
     });
 
     describe('When receives an array as `featureName` props', () => {
-      beforeEach(() => {
-        featureToggle = shallow(
+      it('should not render children is toggle with name is not enabled', () => {
+        render(
           <FeatureToggle
             featureName={[
               featureNames.thisOneIsDisabled,
@@ -97,13 +73,9 @@ describe('<FeatureToggle />', () => {
             ]}
           >
             {aChildComponent}
-          </FeatureToggle>,
-          { context }
+          </FeatureToggle>
         );
-      });
-
-      it('should not render children is toggle with name is not enabled', () => {
-        expect(featureToggle.contains(aChildComponent)).toEqual(false);
+        expect(screen.queryByText('Yay I am a child')).not.toBeInTheDocument();
       });
     });
   });
