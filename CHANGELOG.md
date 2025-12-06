@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][]
 
+### Fixed
+
+- Enabling server-side and client-side usage
+
+### Updated
+
+- Adding code examples for server-side and client-side usage
+
 ## [7.0.0][] - 2025-12-05
 
 ### Fixed

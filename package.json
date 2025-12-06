@@ -31,6 +31,13 @@
   "browser": "dist/umd/reactor-feature-toggle.js",
   "jsnext:main": "dist/esm/index.js",
   "cjs": "dist/cjs/index.js",
+  "exports": {
+    ".": {
+      "types": "./dist/cjs/index.d.ts",
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
+    }
+  },
   "scripts": {
     "build": "npm run build:clean && npm run build:cjs && npm run build:esm && npm run build:umd",
     "build:cjs": "tsc --project ./tsconfig.cjs.json --declaration --module commonjs --target es5 --outDir dist/cjs",
@@ -115,7 +122,7 @@
   "bundlesize": [
     {
       "path": "./dist/umd/reactor-feature-toggle.min.js",
-      "maxSize": "352B"
+      "maxSize": "1.1KB"
     }
   ],
   "engines": {

@@ -1,5 +1,5 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import React, { ReactNode, FC, ReactElement } from 'react';
+import React, { ReactNode, ReactElement } from 'react';
 import { isOn } from 'feature-toggle-service';
 
 export interface FeatureToggleProps {
@@ -36,9 +36,9 @@ const isOnCheck = (featureName: string[] | string) => {
   return false;
 };
 
-export const FeatureToggle: FC<FeatureToggleProps> = (
-  props
-): ReactElement<any> | null => {
+export const FeatureToggle = (
+  props: FeatureToggleProps
+): ReactElement | null => {
   const showContent = isOnCheck(props.featureName);
 
   return showContent ? (props.children as ReactElement) : null;

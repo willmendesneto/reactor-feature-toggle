@@ -38,8 +38,6 @@ You can get it on NPM installing `reactor-feature-toggle` module as a project de
 
 ```shell
 npm install reactor-feature-toggle --save
-# or
-yarn add reactor-feature-toggle
 ```
 
 You can also use the standalone UMD build by including `dist/reactor-feature-toggle.js` in your page. If you do this you'll also need to include the dependencies. For example:
@@ -51,6 +49,8 @@ You can also use the standalone UMD build by including `dist/reactor-feature-tog
 ```
 
 ## Setup
+
+### Client-side
 
 You'll need to import `FeatureToggleProvider` and add it into the root component of your application. So that you can enable/disable features via `FeatureToggle` component any place in your application.
 
@@ -119,7 +119,66 @@ const AppWrapper = () => {
 export default AppWrapper;
 ```
 
-# Demo
+### Using `useFeatureToggle()`
+
+```javascript
+import { useFeatureToggle } from 'reactor-feature-toggle';
+
+function Dashboard() {
+  const { isOn } = useFeatureToggle();
+
+  // {
+  //  enableNewDashboard: true,
+  //  enableProPlan: true,
+  //  enableBetaFeatures: false,
+  // }
+  //
+  const canAccessNewDashboard = isOn('enableNewDashboard') && isOn('enableProPlan');
+  const showBetaFeatures = isOn('enableBetaFeatures');
+
+  if (canAccessNewDashboard) {
+    return <div>New Dashboard</div>;
+  }
+
+  if (showBetaFeatures) {
+    return <div>Beta Feature!</div>;
+  }
+
+  return <div>Current Dashboard</div>;
+}
+```
+
+### Server-Side Usage
+
+For Server-Side Rendering or React Server Components, initialize `feature-toggle-service` directly without the Provider:
+
+```javascript
+import { set, FeatureToggle } from 'reactor-feature-toggle';
+
+// Initialize feature flags (typically in your root server component)
+const featureFlags = {
+  enableMainContent: true,
+  enableServerSideFeature: true,
+  enableNewAPI: false,
+};
+
+set(featureFlags);
+
+// Use FeatureToggle component in any Server Component
+export default function ServerPage() {
+  return 
+    (
+      <div>
+        <h1>ServerPage</h1>
+        <FeatureToggle featureName={['enableMainContent']}>
+          <div>Main Content visible!</div>
+        </FeatureToggle>
+      </div>
+    );
+}
+```
+
+## Demo
 
 Try out the [demo](https://stackblitz.com/edit/reactor-feature-toggle-sample)!
 
@@ -132,5 +191,4 @@ this project is using `np` package to publish, which makes things straightforwar
 ## Author
 
 **Wilson Mendes (willmendesneto)**
-
 - <http://github.com/willmendesneto>
