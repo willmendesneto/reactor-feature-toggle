@@ -24,7 +24,7 @@ describe('<FeatureToggle />', () => {
 
   describe('When the given toggle is enabled', () => {
     describe('When receives a string as `featureName` props', () => {
-      it.only('should render children', () => {
+      it('should render children', () => {
         render(
           <FeatureToggle featureName={featureNames.thisOneIsEnabled}>
             {aChildComponent}
@@ -77,6 +77,44 @@ describe('<FeatureToggle />', () => {
         );
         expect(screen.queryByText('Yay I am a child')).not.toBeInTheDocument();
       });
+    });
+  });
+
+  describe('When receives an array as `featureName` props and one feature is off', () => {
+    it('should not render children', () => {
+      render(
+        <FeatureToggle
+          featureName={[
+            featureNames.thisOneIsEnabled,
+            featureNames.thisIsAnotherOneDisabled,
+          ]}
+        >
+          {aChildComponent}
+        </FeatureToggle>
+      );
+      expect(screen.queryByText('Yay I am a child')).not.toBeInTheDocument();
+    });
+  });
+
+  describe('When the given toggle is negated and on', () => {
+    it('should not render children', () => {
+      render(
+        <FeatureToggle featureName={`!${featureNames.thisOneIsEnabled}`}>
+          {aChildComponent}
+        </FeatureToggle>
+      );
+      expect(screen.queryByText('Yay I am a child')).not.toBeInTheDocument();
+    });
+  });
+
+  describe('When the given toggle is negated and off', () => {
+    it('should render children', () => {
+      render(
+        <FeatureToggle featureName={`!${featureNames.thisOneIsDisabled}`}>
+          {aChildComponent}
+        </FeatureToggle>
+      );
+      expect(screen.getByText('Yay I am a child')).toBeInTheDocument();
     });
   });
 });

@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][]
 
+### Added
+
+- Adding `use client` directive. More details in https://react.dev/reference/rsc/use-client
+- Adding unit tests for `useFeatureToggle()`
+
 ## [8.0.0][] - 2025-12-06
 
 ### Fixed

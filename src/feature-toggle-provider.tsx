@@ -1,3 +1,5 @@
+// More details about `use client` directive in https://react.dev/reference/rsc/use-client
+'use client';
 import React, { createContext, useContext, ReactNode, useMemo } from 'react';
 import { set, isOn, FeatureToggleServiceConfig } from 'feature-toggle-service';
 
@@ -5,15 +7,15 @@ export interface ReactorFeatureToggleProviderProps {
   children: ReactNode;
   featureToggleService: FeatureToggleServiceConfig;
 }
+
 interface FeatureToggleContextType {
   isOn: (featureName: string) => boolean;
   toggles: FeatureToggleServiceConfig | null;
 }
 
-const FeatureToggleContext = createContext<FeatureToggleContextType>({
-  isOn,
-  toggles: null,
-});
+const FeatureToggleContext = createContext<FeatureToggleContextType | null>(
+  null
+);
 
 export const FeatureToggleProvider = ({
   children,
@@ -41,7 +43,7 @@ export function useFeatureToggle(): FeatureToggleContextType {
   const context = useContext(FeatureToggleContext);
   if (!context) {
     throw new Error(
-      'useFeatureToggle must be used within FeatureToggleClientProvider'
+      'useFeatureToggle must be used within FeatureToggleProvider'
     );
   }
 
