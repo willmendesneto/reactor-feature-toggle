@@ -60,7 +60,7 @@
   },
   "dependencies": {
     "@types/jsdom": "^27.0.0",
-    "feature-toggle-service": "^6.0.0",
+    "feature-toggle-service": "^7.0.1",
     "iltorb": "^2.4.5",
     "parse5": "^6.0.0",
     "tslib": "^2.3.0"
@@ -116,12 +116,13 @@
   },
   "peerDependencies": {
     "react": ">=18.2.0",
-    "react-dom": ">=18.2.0"
+    "react-dom": ">=18.2.0",
+    "feature-toggle-service": "^7.0.1"
   },
   "bundlesize": [
     {
       "path": "./dist/umd/reactor-feature-toggle.min.js",
-      "maxSize": "1.1KB"
+      "maxSize": "1.3KB"
     }
   ],
   "engines": {

@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Updated
 
 - Adding minified and unminified UMD versions in package distribution
+- Updating `feature-toggle-service` to latest version
 
 ## [8.1.0][] - 2025-12-06
 
