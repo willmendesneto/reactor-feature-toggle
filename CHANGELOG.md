@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][]
 
+## [8.0.0][] - 2025-12-06
+
 ### Fixed
 
 - Enabling server-side and client-side usage
@@ -204,7 +206,8 @@ And pass `featureName` prop with `!` prefix to keep the same behavior on WebApp
 [4.0.5]: https://github.com/willmendesneto/reactor-feature-toggle/tree/v4.0.5
 
 
-[Unreleased]: https://github.com/willmendesneto/reactor-feature-toggle/compare/v7.0.0...HEAD
+[Unreleased]: https://github.com/willmendesneto/reactor-feature-toggle/compare/v8.0.0...HEAD
+[8.0.0]: https://github.com/willmendesneto/reactor-feature-toggle/compare/v7.0.0...v8.0.0
 [7.0.0]: https://github.com/willmendesneto/reactor-feature-toggle/compare/v6.1.0...v7.0.0
 [6.1.0]: https://github.com/willmendesneto/reactor-feature-toggle/compare/v6.0.1...v6.1.0
 [6.0.1]: https://github.com/willmendesneto/reactor-feature-toggle/compare/v6.0.0...v6.0.1
