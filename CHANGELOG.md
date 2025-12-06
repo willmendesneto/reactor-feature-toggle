@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][]
 
+### Updated
+
+- Adding minified and unminified UMD versions in package distribution
+
 ## [8.1.0][] - 2025-12-06
 
 ### Added
