@@ -193,15 +193,8 @@ describe('useFeatureToggle', () => {
   });
 
   describe('when used WITHOUT FeatureToggleProvider', () => {
-    // Suppress console.error for these tests to keep output clean
-    const originalError = console.error;
-
     beforeAll(() => {
-      console.error = vi.fn();
-    });
-
-    afterAll(() => {
-      console.error = originalError;
+      vi.spyOn(console, 'error').mockImplementation(() => {});
     });
 
     it('should throw error with descriptive message', () => {

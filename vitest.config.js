@@ -6,6 +6,6 @@ export default defineConfig({
   test: {
     globals: true, // Enable global APIs like expect, describe, it
     environment: 'jsdom',
-    setupFiles: ['./vitest.setup.js'],
+    setupFiles: ['./vitest.setup.ts'],
   },
 });

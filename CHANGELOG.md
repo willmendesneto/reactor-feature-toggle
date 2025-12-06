@@ -12,6 +12,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Adding `use client` directive. More details in https://react.dev/reference/rsc/use-client
 - Adding unit tests for `useFeatureToggle()`
 
+### Updated
+
+- Upgrading `@testing-library/react` and `@testing-library/jest-dom` to latest
+
 ## [8.0.0][] - 2025-12-06
 
 ### Fixed
