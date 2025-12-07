@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][]
 
+### Added
+
+- Adding `reactor-feature-toggle/client` entry point for client-side components
+
 ## [8.2.0][] - 2025-12-06
 
 ### Updated
