@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][]
 
+### Updated
+
+- Migrating from Circle CI to Github Actions
+
 ## [8.3.0][] - 2025-12-06
 
 ### Added
