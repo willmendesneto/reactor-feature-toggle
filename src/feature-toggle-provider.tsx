@@ -1,5 +1,3 @@
-// More details about `use client` directive in https://react.dev/reference/rsc/use-client
-'use client';
 import React, { createContext, useContext, ReactNode, useMemo } from 'react';
 import { set, isOn, FeatureToggleServiceConfig } from 'feature-toggle-service';
 

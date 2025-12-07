@@ -36,6 +36,11 @@
       "types": "./dist/cjs/index.d.ts",
       "import": "./dist/esm/index.js",
       "require": "./dist/cjs/index.js"
+    },
+    "./client": {
+      "types": "./dist/cjs/client.d.ts",
+      "import": "./dist/esm/client.js",
+      "require": "./dist/cjs/client.js"
     }
   },
   "scripts": {
@@ -115,9 +120,9 @@
     "vitest": "^4.0.15"
   },
   "peerDependencies": {
+    "feature-toggle-service": "^7.0.1",
     "react": ">=18.2.0",
-    "react-dom": ">=18.2.0",
-    "feature-toggle-service": "^7.0.1"
+    "react-dom": ">=18.2.0"
   },
   "bundlesize": [
     {

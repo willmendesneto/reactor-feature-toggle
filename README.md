@@ -58,7 +58,10 @@ Also, multiple `FeatureToggleProvider` are allowed, which gives more flexibility
 
 ```javascript
 import React, { Component } from 'react';
-import { FeatureToggleProvider, FeatureToggle } from 'reactor-feature-toggle';
+// `FeatureToggleProvider` and `useFeatureToggle()` is only available on client-side
+import { FeatureToggleProvider } from 'reactor-feature-toggle/client';
+// `FeatureToggle` is available on both client and server sides
+import { FeatureToggle } from 'reactor-feature-toggle';
 
 const AppWrapper = () => {
   const featureToggleData = {
@@ -122,6 +125,7 @@ export default AppWrapper;
 ### Using `useFeatureToggle()`
 
 ```javascript
+// Make sure your parent component is wrapped with `FeatureToggleProvider` component
 import { useFeatureToggle } from 'reactor-feature-toggle';
 
 function Dashboard() {
