@@ -5,9 +5,8 @@
 
 [![npm version](https://badge.fury.io/js/reactor-feature-toggle.svg)](http://badge.fury.io/js/reactor-feature-toggle) [![npm downloads](https://img.shields.io/npm/dm/reactor-feature-toggle.svg)](https://npmjs.org/reactor-feature-toggle)
 
-[![Build Status](https://circleci.com/gh/willmendesneto/reactor-feature-toggle.svg?style=shield)](https://circleci.com/gh/willmendesneto/reactor-feature-toggle)
+[![Build Status](https://github.com/willmendesneto/reactor-feature-toggle/actions/workflows/ci.yml/badge.svg)](https://github.com/willmendesneto/reactor-feature-toggle/actions)
 [![Coverage Status](https://coveralls.io/repos/willmendesneto/reactor-feature-toggle/badge.svg?branch=master)](https://coveralls.io/r/willmendesneto/reactor-feature-toggle?branch=master)
-[![Dependency Status](https://david-dm.org/willmendesneto/reactor-feature-toggle.svg)](https://david-dm.org/willmendesneto/reactor-feature-toggle)
 
 [![NPM](https://nodei.co/npm/reactor-feature-toggle.png?downloads=true&downloadRank=true&stars=true)](https://npmjs.org/reactor-feature-toggle)
 [![NPM](https://nodei.co/npm-dl/reactor-feature-toggle.png?height=3&months=3)](https://npmjs.org/reactor-feature-toggle)
@@ -20,6 +19,7 @@ Your module to handle with [feature toggles](http://martinfowler.com/bliki/Featu
 
 The idea of this directive is make this process transparent and easier. So the main point is integrate this directive with other tooling process, such as:
 
+- Client-side rendering;
 - Server-side rendering;
 - Progressive rendering;
 - Any other that yoy like :)
@@ -28,8 +28,6 @@ You can integrate with WebSockets or handling this in a EventSourcing architectu
 
 - [Install](#install)
 - [Setup](#setup)
-- [Usage](#usage)
-- [Releases](#releases)
 - [Demo](#demo)
 
 ## Install
@@ -195,4 +193,5 @@ this project is using `np` package to publish, which makes things straightforwar
 ## Author
 
 **Wilson Mendes (willmendesneto)**
+
 - <http://github.com/willmendesneto>

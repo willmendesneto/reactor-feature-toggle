@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Updated
 
 - Migrating from Circle CI to Github Actions
+- updated `README.md` docs
 
 ## [8.3.0][] - 2025-12-06
 
