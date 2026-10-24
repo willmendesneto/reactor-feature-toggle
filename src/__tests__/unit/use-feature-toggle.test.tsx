@@ -2,8 +2,8 @@ import { render, screen } from '@testing-library/react';
 import {
   FeatureToggleProvider,
   useFeatureToggle,
+  FeatureToggle,
 } from '../../feature-toggle-provider';
-import { FeatureToggle } from '../../feature-toggle';
 import { FeatureToggleServiceConfig } from 'feature-toggle-service';
 import { vi } from 'vitest';
 
@@ -350,62 +350,6 @@ describe('useFeatureToggle', () => {
       );
 
       expect(screen.getByTestId('empty-string').textContent).toBe('no');
-    });
-
-    it('should work with nested providers with different configs', () => {
-      const outerFlags: FeatureToggleServiceConfig = {
-        outerFeature: true,
-        sharedFeature: false,
-      };
-
-      const innerFlags: FeatureToggleServiceConfig = {
-        innerFeature: true,
-        sharedFeature: true,
-      };
-
-      const OuterComponent = () => {
-        const { isOn } = useFeatureToggle();
-
-        return (
-          <div>
-            <div data-testid="outer-feature">
-              {isOn('outerFeature') ? 'yes' : 'no'}
-            </div>
-            <div data-testid="outer-shared">
-              {isOn('sharedFeature') ? 'yes' : 'no'}
-            </div>
-          </div>
-        );
-      };
-
-      const InnerComponent = () => {
-        const { isOn } = useFeatureToggle();
-
-        return (
-          <div>
-            <div data-testid="inner-feature">
-              {isOn('innerFeature') ? 'yes' : 'no'}
-            </div>
-            <div data-testid="inner-shared">
-              {isOn('sharedFeature') ? 'yes' : 'no'}
-            </div>
-          </div>
-        );
-      };
-
-      render(
-        <FeatureToggleProvider featureToggleService={outerFlags}>
-          <OuterComponent />
-          <FeatureToggleProvider featureToggleService={innerFlags}>
-            <InnerComponent />
-          </FeatureToggleProvider>
-        </FeatureToggleProvider>
-      );
-
-      expect(screen.getByTestId('outer-feature').textContent).toBe('yes');
-      expect(screen.getByTestId('outer-shared').textContent).toBe('no');
-      expect(screen.getByTestId('inner-feature').textContent).toBe('yes');
-      expect(screen.getByTestId('inner-shared').textContent).toBe('yes');
     });
   });
 

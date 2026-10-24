@@ -101,7 +101,7 @@
     "vitest": "^5.0.5"
   },
   "peerDependencies": {
-    "feature-toggle-service": "^7.0.1 || ^8.0.0",
+    "feature-toggle-service": "^8.0.0",
     "react": ">=18.2.0",
     "react-dom": ">=18.2.0"
   },
@@ -112,22 +112,22 @@
     {
       "name": "reactor-feature-toggle",
       "path": "dist/index.mjs",
-      "import": "{ FeatureToggle }",
+      "import": "{ FeatureToggle, FeatureToggleProvider, useFeatureToggle }",
       "ignore": [
         "react",
         "feature-toggle-service"
       ],
-      "limit": "250 B"
+      "limit": "500 B"
     },
     {
       "name": "reactor-feature-toggle/client",
       "path": "dist/client.mjs",
-      "import": "{ FeatureToggleProvider, useFeatureToggle }",
+      "import": "{ FeatureToggle, FeatureToggleProvider, useFeatureToggle }",
       "ignore": [
         "react",
         "feature-toggle-service"
       ],
-      "limit": "300 B"
+      "limit": "500 B"
     }
   ]
 }

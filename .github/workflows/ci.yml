@@ -55,14 +55,13 @@ jobs:
         run: npm run size
 
   compatibility:
-    name: Node ${{ matrix.node }} / React ${{ matrix.react }} / feature-toggle-service ${{ matrix.service }}
+    name: Node ${{ matrix.node }} / React ${{ matrix.react }}
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
         node: [22, 24]
         react: [18, 19]
-        service: [7, 8]
     steps:
       - uses: actions/checkout@v7
 
@@ -73,10 +72,9 @@ jobs:
 
       - run: npm ci
 
-      # A single install, since a second `npm install --no-save` would revert the first one
-      - name: Install React ${{ matrix.react }} and feature-toggle-service ${{ matrix.service }}
-        if: matrix.react != 19 || matrix.service != 8
-        run: npm install --no-save react@${{ matrix.react }} react-dom@${{ matrix.react }} feature-toggle-service@${{ matrix.service }}
+      - name: Install React ${{ matrix.react }}
+        if: matrix.react != 19
+        run: npm install --no-save react@${{ matrix.react }} react-dom@${{ matrix.react }}
 
       - name: Unit tests
         run: npm test
@@ -85,4 +83,3 @@ jobs:
         run: npm run test:smoke
         env:
           REACT_VERSION: ${{ matrix.react }}
-          FEATURE_TOGGLE_SERVICE_VERSION: ${{ matrix.service }}

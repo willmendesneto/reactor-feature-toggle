@@ -1,6 +1,8 @@
 import { render, screen } from '@testing-library/react';
-import { FeatureToggleProvider } from '../../feature-toggle-provider';
-import { FeatureToggle } from '../../feature-toggle';
+import {
+  FeatureToggle,
+  FeatureToggleProvider,
+} from '../../feature-toggle-provider';
 import { FeatureToggleServiceConfig } from 'feature-toggle-service';
 
 describe('<FeatureTogglesProvider />', () => {
