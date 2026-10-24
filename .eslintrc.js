@@ -1,7 +1,7 @@
 const restrictedGlobals = require('confusing-browser-globals');
 
 module.exports = {
-  parser: 'babel-eslint',
+  parser: '@typescript-eslint/parser',
   env: {
     browser: true,
     es6: true,
@@ -89,10 +89,17 @@ module.exports = {
       },
     },
     {
-      // Jest env
+      // Vitest globals
       files: ['**/__tests__/**'],
-      env: {
-        jest: true,
+      globals: {
+        describe: 'readonly',
+        it: 'readonly',
+        expect: 'readonly',
+        vi: 'readonly',
+        beforeAll: 'readonly',
+        beforeEach: 'readonly',
+        afterAll: 'readonly',
+        afterEach: 'readonly',
       },
     },
   ],
