@@ -20,52 +20,56 @@
     "url": "https://github.com/willmendesneto/reactor-feature-toggle/issues"
   },
   "license": "MIT",
+  "type": "commonjs",
   "repository": {
     "type": "git",
-    "url": "https://github.com/willmendesneto/reactor-feature-toggle.git"
+    "url": "git+https://github.com/willmendesneto/reactor-feature-toggle.git"
   },
-  "main": "dist/cjs/index.js",
-  "module": "dist/esm/index.js",
-  "types": "dist/cjs/index.d.ts",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
   "sideEffects": false,
-  "browser": "dist/umd/reactor-feature-toggle.js",
-  "jsnext:main": "dist/esm/index.js",
-  "cjs": "dist/cjs/index.js",
   "exports": {
     ".": {
-      "types": "./dist/cjs/index.d.ts",
-      "import": "./dist/esm/index.js",
-      "require": "./dist/cjs/index.js"
+      "import": {
+        "types": "./dist/index.d.mts",
+        "default": "./dist/index.mjs"
+      },
+      "require": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      }
     },
     "./client": {
-      "types": "./dist/cjs/client.d.ts",
-      "import": "./dist/esm/client.js",
-      "require": "./dist/cjs/client.js"
-    }
+      "import": {
+        "types": "./dist/client.d.mts",
+        "default": "./dist/client.mjs"
+      },
+      "require": {
+        "types": "./dist/client.d.ts",
+        "default": "./dist/client.js"
+      }
+    },
+    "./package.json": "./package.json"
   },
   "scripts": {
-    "build": "npm run build:clean && npm run build:cjs && npm run build:esm && npm run build:umd",
-    "build:cjs": "tsc --project ./tsconfig.cjs.json --declaration --module commonjs --target es5 --outDir dist/cjs",
-    "build:umd": "rollup --config && npm run build:umd:min",
-    "build:umd:min": "uglifyjs --compress --mangle --screw-ie8 --comments -o dist/umd/reactor-feature-toggle.min.js -- dist/umd/reactor-feature-toggle.js && gzip dist/umd/reactor-feature-toggle.min.js -c > dist/umd/reactor-feature-toggle.min.js.gz",
-    "build:esm": "tsc --project ./tsconfig.esm.json --outDir dist/esm",
-    "build:clean": "rm -rf ./dist ./coverage .tsbuildinfo",
+    "build": "tsdown --config-loader native",
+    "lint:package": "publint --strict --pack npm && attw --pack . --profile node16",
+    "size": "size-limit",
     "lint": "eslint --ext .ts,.tsx,.js src/",
     "lint:fix": "eslint --ext .ts,.tsx,.js src/ --fix",
     "lint:types": "tsc --noEmit",
     "lint:types-watch": "tsc --noEmit --watch",
-    "prepack": "npm run preversion -s && npm run build -s",
+    "prepack": "npm run build -s",
     "test": "vitest --watch=false",
     "test:watch": "vitest --watch",
     "preversion": "npm run lint -s && npm run lint:types -s && npm run test -s",
-    "bundlesize": "bundlesize",
     "version": "version-changelog CHANGELOG.md && changelog-verify CHANGELOG.md && git add CHANGELOG.md",
     "vc": "version-changelog CHANGELOG.md"
   },
-  "dependencies": {
-    "tslib": "^2.3.0"
-  },
   "devDependencies": {
+    "@arethetypeswrong/cli": "^0.18.5",
+    "@size-limit/preset-small-lib": "^14.3.0",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^14.3.1",
     "@types/react": "^16.9.35",
@@ -75,7 +79,6 @@
     "@vitejs/plugin-react": "^5.1.1",
     "@vitest/coverage-v8": "^4.0.15",
     "@vitest/ui": "^4.0.15",
-    "bundlesize": "^0.18.2",
     "changelog-verify": "^1.1.2",
     "confusing-browser-globals": "^1.0.9",
     "eslint": "^7.0.0",
@@ -87,15 +90,12 @@
     "feature-toggle-service": "^7.0.1",
     "jsdom": "^27.2.0",
     "prettier": "^2.0.5",
+    "publint": "^0.3.25",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "rollup": "^2.58.3",
-    "rollup-plugin-commonjs": "^10.1.0",
-    "rollup-plugin-node-resolve": "^5.2.0",
-    "rollup-plugin-replace": "^2.2.0",
-    "rollup-plugin-terser": "^7.0.2",
+    "size-limit": "^14.3.0",
+    "tsdown": "^0.23.2",
     "typescript": "^5.9.3",
-    "uglify-js": "3.9.4",
     "version-changelog": "^3.1.1",
     "vitest": "^4.0.15"
   },
@@ -104,22 +104,29 @@
     "react": ">=18.2.0",
     "react-dom": ">=18.2.0"
   },
-  "bundlesize": [
-    {
-      "path": "./dist/umd/reactor-feature-toggle.min.js",
-      "maxSize": "1.3KB"
-    }
-  ],
   "engines": {
-    "node": ">=12"
+    "node": ">=18"
   },
-  "browserslist": [
-    "last 1 chrome versions",
-    "last 1 edge versions",
-    "last 1 firefox versions",
-    "last 1 safari versions",
-    "last 1 and_chr versions",
-    "last 1 ios_saf versions",
-    "ie 11"
+  "size-limit": [
+    {
+      "name": "reactor-feature-toggle",
+      "path": "dist/index.mjs",
+      "import": "{ FeatureToggle }",
+      "ignore": [
+        "react",
+        "feature-toggle-service"
+      ],
+      "limit": "250 B"
+    },
+    {
+      "name": "reactor-feature-toggle/client",
+      "path": "dist/client.mjs",
+      "import": "{ FeatureToggleProvider, useFeatureToggle }",
+      "ignore": [
+        "react",
+        "feature-toggle-service"
+      ],
+      "limit": "300 B"
+    }
   ]
 }
