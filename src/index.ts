@@ -1,3 +1,13 @@
-// Server-safe entry point: no React context or hooks, so it can be imported
-// from React Server Components. Client-only APIs live in `reactor-feature-toggle/client`.
-export * from './feature-toggle';
+'use client';
+// More details about `use client` directive in https://react.dev/reference/rsc/use-client
+
+export {
+  FeatureToggle,
+  FeatureToggleProvider,
+  useFeatureToggle,
+} from './feature-toggle-provider';
+export type {
+  FeatureToggleProps,
+  ReactorFeatureToggleProviderProps,
+} from './feature-toggle-provider';
+export type { FeatureName } from './is-on-check';

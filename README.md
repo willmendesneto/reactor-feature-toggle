@@ -39,17 +39,10 @@ npm install reactor-feature-toggle --save
 
 ## Setup
 
-### Client-side
-
-You'll need to import `FeatureToggleProvider` and add it into the root component of your application. So that you can enable/disable features via `FeatureToggle` component any place in your application.
-
-Also, multiple `FeatureToggleProvider` are allowed, which gives more flexibility for your application.
+Add a single `FeatureToggleProvider` at the root of your application. `FeatureToggle` and `useFeatureToggle()` must be rendered inside it, and they throw an error otherwise.
 
 ```javascript
-// `FeatureToggleProvider` and `useFeatureToggle()` is only available on client-side
-import { FeatureToggleProvider } from 'reactor-feature-toggle/client';
-// `FeatureToggle` is available on both client and server sides
-import { FeatureToggle } from 'reactor-feature-toggle';
+import { FeatureToggle, FeatureToggleProvider } from 'reactor-feature-toggle';
 
 const AppWrapper = () => {
   const featureToggleData = {
@@ -126,8 +119,8 @@ export default AppWrapper;
 ### Using `useFeatureToggle()`
 
 ```javascript
-// Make sure your parent component is wrapped with `FeatureToggleProvider` component
-import { useFeatureToggle } from 'reactor-feature-toggle/client';
+// Make sure your component is rendered inside `FeatureToggleProvider`
+import { useFeatureToggle } from 'reactor-feature-toggle';
 
 function Dashboard() {
   const { isOn } = useFeatureToggle();
@@ -138,8 +131,8 @@ function Dashboard() {
   //  enableBetaFeatures: false,
   // }
   //
-  const canAccessNewDashboard =
-    isOn('enableNewDashboard') && isOn('enableProPlan');
+  // Same syntax as `featureName`: arrays and `!` prefix are supported
+  const canAccessNewDashboard = isOn(['enableNewDashboard', 'enableProPlan']);
   const showBetaFeatures = isOn('enableBetaFeatures');
 
   if (canAccessNewDashboard) {
@@ -154,39 +147,68 @@ function Dashboard() {
 }
 ```
 
-### Server-Side Usage
+### Changing toggles from a component
 
-For Server-Side Rendering or React Server Components, initialize `feature-toggle-service` directly without the Provider:
+`useFeatureToggle()` also returns `set()`. The new values are merged with the current ones, and every `FeatureToggle` and `useFeatureToggle()` re-renders:
 
 ```javascript
-import { set } from 'feature-toggle-service';
-import { FeatureToggle } from 'reactor-feature-toggle';
+import { useFeatureToggle } from 'reactor-feature-toggle';
 
-// Initialize feature flags (typically in your root server component)
-const featureFlags = {
-  enableMainContent: true,
-  enableServerSideFeature: true,
-  enableNewAPI: false,
-};
+function BetaOptIn() {
+  const { isOn, set } = useFeatureToggle();
 
-set(featureFlags);
-
-// Use FeatureToggle component in any Server Component
-export default function ServerPage() {
   return (
-    <div>
-      <h1>ServerPage</h1>
-      <FeatureToggle featureName={['enableMainContent']}>
-        <div>Main Content visible!</div>
-      </FeatureToggle>
-    </div>
+    <button onClick={() => set({ enableBetaFeatures: true })}>
+      {isOn('enableBetaFeatures') ? 'Beta enabled' : 'Try the beta'}
+    </button>
   );
 }
 ```
 
+Changes made via `set()` are kept when the provider re-renders with the same `featureToggleService` values. When a value passed to the provider changes, the provider applies it.
+
+### Single provider
+
+Only one `FeatureToggleProvider` is allowed per application. Rendering a provider inside another one, or two providers at the same time, logs an error via `console.error` and throws it.
+
+Why? Feature toggles are application-level configuration: every component must see the same values. `feature-toggle-service`, which this package is built on, is shared between the client and the server, so several providers on the client would create more problems than they solve, with toggles that differ between parts of the page and are hard to debug. Each provider keeps its toggles in its own `feature-toggle-service` instance (`createFeatureToggleService()`), so toggles never leak between server requests. See [the decision record](docs/decisions/0001-single-feature-toggle-provider.md) for more details.
+
+### Server-side rendering and React Server Components
+
+`FeatureToggleProvider` works with server-side rendering: each render creates its own toggles, so concurrent requests don't share them.
+
+Both entry points are client modules (`'use client'`). In React Server Components, render the provider in your root layout and use `FeatureToggle` and `useFeatureToggle()` in client components, or pass them as children from server components:
+
+```javascript
+// app/layout.js (Server Component)
+import { FeatureToggleProvider } from 'reactor-feature-toggle';
+
+export default async function RootLayout({ children }) {
+  const toggles = await getFeatureToggles(); // per request, e.g. from your API
+
+  return (
+    <html>
+      <body>
+        <FeatureToggleProvider featureToggleService={toggles}>
+          {children}
+        </FeatureToggleProvider>
+      </body>
+    </html>
+  );
+}
+```
+
+## Migrating from v9
+
+- Only one `FeatureToggleProvider` is allowed per application: nested or simultaneous providers throw an error. See [Single provider](#single-provider).
+- `FeatureToggle` must be rendered inside `FeatureToggleProvider`, and it throws an error otherwise. It reads the toggles from the provider instead of the global `feature-toggle-service` state, so calling `set()` from `feature-toggle-service` directly no longer affects it. Use `set()` from `useFeatureToggle()` instead.
+- The provider no longer changes the global `feature-toggle-service` state.
+- `FeatureToggle`, `FeatureToggleProvider` and `useFeatureToggle()` are exported from both `reactor-feature-toggle` and `reactor-feature-toggle/client`, which are client modules (`'use client'`).
+- `useFeatureToggle()` returns `set()`, and its `isOn()` supports arrays and the `!` prefix.
+- `feature-toggle-service` >= 8 is required.
+
 ## Migrating from v8
 
-- `FeatureToggleProvider` and `useFeatureToggle()` are only exported from `reactor-feature-toggle/client`. The main entry point only exports `FeatureToggle`, so it can be imported from React Server Components.
 - New `fallback` prop, rendered when the check fails.
 - `showWhenDisabled` was removed from the props types. It has been ignored since v4.0.0: use the `!` prefix or `fallback` instead.
 - The UMD build was removed. Node.js >= 18 is required.

@@ -1,7 +1,8 @@
 // Installs the packed tarball in a temporary project and checks that both entry
 // points work from ESM, CommonJS and the `react-server` condition (RSC).
 import { execFileSync } from 'node:child_process';
-import { mkdtempSync, rmSync, writeFileSync } from 'node:fs';
+import assert from 'node:assert/strict';
+import { mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
 
@@ -49,15 +50,16 @@ try {
     import assert from 'node:assert/strict';
     import { createElement } from 'react';
     import { renderToString } from 'react-dom/server';
-    import * as server from 'reactor-feature-toggle';
+    import * as main from 'reactor-feature-toggle';
     import * as client from 'reactor-feature-toggle/client';
 
-    assert.deepEqual(Object.keys(server).sort(), ['FeatureToggle']);
-    assert.deepEqual(Object.keys(client).sort(), ['FeatureToggleProvider', 'useFeatureToggle']);
+    const exports = ['FeatureToggle', 'FeatureToggleProvider', 'useFeatureToggle'];
+    assert.deepEqual(Object.keys(main).sort(), exports);
+    assert.deepEqual(Object.keys(client).sort(), exports);
 
     const html = renderToString(
-      createElement(client.FeatureToggleProvider, { featureToggleService: { a: true } },
-        createElement(server.FeatureToggle, { featureName: 'a' }, 'on'))
+      createElement(main.FeatureToggleProvider, { featureToggleService: { a: true } },
+        createElement(main.FeatureToggle, { featureName: 'a' }, 'on'))
     );
     assert.equal(html, 'on');
     `
@@ -70,27 +72,27 @@ try {
     import assert from 'node:assert/strict';
     import { createRequire } from 'node:module';
     const require = createRequire(process.cwd() + '/');
-    const server = require('reactor-feature-toggle');
+    const main = require('reactor-feature-toggle');
     const client = require('reactor-feature-toggle/client');
 
-    assert.equal(typeof server.FeatureToggle, 'function');
-    assert.equal(typeof client.FeatureToggleProvider, 'function');
+    assert.equal(typeof main.FeatureToggle, 'function');
+    assert.equal(typeof main.FeatureToggleProvider, 'function');
+    assert.equal(typeof client.useFeatureToggle, 'function');
     `
   );
 
-  // React 18 stable throws for the `react-server` condition
-  if (!reactVersion.startsWith('18')) {
-    check(
-      'react-server: root entry point does not need client-only APIs',
-      ['--conditions=react-server'],
-      `
-    import assert from 'node:assert/strict';
-    import { set } from 'feature-toggle-service';
-    import { FeatureToggle } from 'reactor-feature-toggle';
-
-    set({ a: true });
-    assert.equal(FeatureToggle({ featureName: 'a', children: 'on' }).props.children, 'on');
-    `
+  // Both entry points are client modules, so React Server Components bundlers
+  // (e.g. Next.js) render them as client components
+  console.log('\n▶ "use client" directive');
+  for (const file of ['index.mjs', 'index.js', 'client.mjs', 'client.js']) {
+    const code = readFileSync(
+      join(dir, 'node_modules/reactor-feature-toggle/dist', file),
+      'utf8'
+    );
+    assert.match(
+      code,
+      /^"use client";/,
+      `dist/${file} should start with "use client"`
     );
   }
 
