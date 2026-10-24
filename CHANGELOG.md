@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][]
 
+### Added
+
+- Supporting `feature-toggle-service` 8: peer dependency is now `^7.0.1 || ^8.0.0`
+
+### Updated
+
+- CI compatibility matrix also covers `feature-toggle-service` 7 and 8
+
 ## [9.0.0][] - 2026-10-24
 
 ### Breaking Changes
