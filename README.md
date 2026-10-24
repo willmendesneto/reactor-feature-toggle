@@ -47,7 +47,6 @@ You'll need to import `FeatureToggleProvider` and add it into the root component
 Also, multiple `FeatureToggleProvider` are allowed, which gives more flexibility for your application.
 
 ```javascript
-import React, { Component } from 'react';
 // `FeatureToggleProvider` and `useFeatureToggle()` is only available on client-side
 import { FeatureToggleProvider } from 'reactor-feature-toggle/client';
 // `FeatureToggle` is available on both client and server sides
@@ -112,11 +111,24 @@ const AppWrapper = () => {
 export default AppWrapper;
 ```
 
+### `FeatureToggle` props
+
+| Prop          | Type                 | Description                                                         |
+| ------------- | -------------------- | ------------------------------------------------------------------- |
+| `featureName` | `string \| string[]` | Toggle name(s) to check, all must be on. Prefix with `!` to negate. |
+| `fallback`    | `ReactNode`          | Rendered when the check fails. Defaults to `null`.                  |
+
+```javascript
+<FeatureToggle featureName="enableNewCheckout" fallback={<LegacyCheckout />}>
+  <NewCheckout />
+</FeatureToggle>
+```
+
 ### Using `useFeatureToggle()`
 
 ```javascript
 // Make sure your parent component is wrapped with `FeatureToggleProvider` component
-import { useFeatureToggle } from 'reactor-feature-toggle';
+import { useFeatureToggle } from 'reactor-feature-toggle/client';
 
 function Dashboard() {
   const { isOn } = useFeatureToggle();
@@ -127,7 +139,8 @@ function Dashboard() {
   //  enableBetaFeatures: false,
   // }
   //
-  const canAccessNewDashboard = isOn('enableNewDashboard') && isOn('enableProPlan');
+  const canAccessNewDashboard =
+    isOn('enableNewDashboard') && isOn('enableProPlan');
   const showBetaFeatures = isOn('enableBetaFeatures');
 
   if (canAccessNewDashboard) {
@@ -147,7 +160,8 @@ function Dashboard() {
 For Server-Side Rendering or React Server Components, initialize `feature-toggle-service` directly without the Provider:
 
 ```javascript
-import { set, FeatureToggle } from 'reactor-feature-toggle';
+import { set } from 'feature-toggle-service';
+import { FeatureToggle } from 'reactor-feature-toggle';
 
 // Initialize feature flags (typically in your root server component)
 const featureFlags = {
@@ -160,17 +174,23 @@ set(featureFlags);
 
 // Use FeatureToggle component in any Server Component
 export default function ServerPage() {
-  return 
-    (
-      <div>
-        <h1>ServerPage</h1>
-        <FeatureToggle featureName={['enableMainContent']}>
-          <div>Main Content visible!</div>
-        </FeatureToggle>
-      </div>
-    );
+  return (
+    <div>
+      <h1>ServerPage</h1>
+      <FeatureToggle featureName={['enableMainContent']}>
+        <div>Main Content visible!</div>
+      </FeatureToggle>
+    </div>
+  );
 }
 ```
+
+## Migrating from v8
+
+- `FeatureToggleProvider` and `useFeatureToggle()` are only exported from `reactor-feature-toggle/client`. The main entry point only exports `FeatureToggle`, so it can be imported from React Server Components.
+- New `fallback` prop, rendered when the check fails.
+- `showWhenDisabled` was removed from the props types. It has been ignored since v4.0.0: use the `!` prefix or `fallback` instead.
+- The UMD build was removed. Node.js >= 18 is required.
 
 ## Demo
 

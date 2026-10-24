@@ -1,5 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { FeatureToggle } from '../../feature-toggle';
+import { renderToString } from 'react-dom/server';
 import { set } from 'feature-toggle-service';
 
 describe('<FeatureToggle />', () => {
@@ -114,6 +115,73 @@ describe('<FeatureToggle />', () => {
         </FeatureToggle>
       );
       expect(screen.getByText('Yay I am a child')).toBeInTheDocument();
+    });
+  });
+
+  describe('When `fallback` is set', () => {
+    it('should render the fallback if the toggle is off', () => {
+      render(
+        <FeatureToggle
+          featureName={featureNames.thisOneIsDisabled}
+          fallback={<p>Fallback content</p>}
+        >
+          {aChildComponent}
+        </FeatureToggle>
+      );
+      expect(screen.getByText('Fallback content')).toBeInTheDocument();
+      expect(screen.queryByText('Yay I am a child')).not.toBeInTheDocument();
+    });
+
+    it('should not render the fallback if the toggle is on', () => {
+      render(
+        <FeatureToggle
+          featureName={featureNames.thisOneIsEnabled}
+          fallback={<p>Fallback content</p>}
+        >
+          {aChildComponent}
+        </FeatureToggle>
+      );
+      expect(screen.queryByText('Fallback content')).not.toBeInTheDocument();
+      expect(screen.getByText('Yay I am a child')).toBeInTheDocument();
+    });
+  });
+
+  describe('When `fallback` is set without children', () => {
+    it('should render the fallback if any toggle is off', () => {
+      render(
+        <FeatureToggle
+          featureName={[
+            featureNames.thisOneIsEnabled,
+            featureNames.thisOneIsDisabled,
+          ]}
+          fallback={<p>Fallback content</p>}
+        />
+      );
+      expect(screen.getByText('Fallback content')).toBeInTheDocument();
+    });
+
+    it('should render nothing if all toggles are on', () => {
+      const { container } = render(
+        <FeatureToggle
+          featureName={[
+            featureNames.thisOneIsEnabled,
+            featureNames.thisIsAnotherOneEnabled,
+          ]}
+          fallback={<p>Fallback content</p>}
+        />
+      );
+      expect(container).toBeEmptyDOMElement();
+    });
+  });
+
+  describe('When rendered on the server', () => {
+    it('should render children without a provider', () => {
+      const html = renderToString(
+        <FeatureToggle featureName={featureNames.thisOneIsEnabled}>
+          {aChildComponent}
+        </FeatureToggle>
+      );
+      expect(html).toBe('<div>Yay I am a child</div>');
     });
   });
 });
