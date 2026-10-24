@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][]
 
+## [10.0.0][] - 2026-10-24
+
 ### Breaking Changes
 
 - Only one `FeatureToggleProvider` is allowed per application. Nested or simultaneous providers log an error via `console.error` and throw it. See "Single provider" in `README.md` and `docs/decisions/0001-single-feature-toggle-provider.md`
@@ -295,7 +297,8 @@ And pass `featureName` prop with `!` prefix to keep the same behavior on WebApp
 [4.0.5]: https://github.com/willmendesneto/reactor-feature-toggle/tree/v4.0.5
 
 
-[Unreleased]: https://github.com/willmendesneto/reactor-feature-toggle/compare/v9.0.0...HEAD
+[Unreleased]: https://github.com/willmendesneto/reactor-feature-toggle/compare/v10.0.0...HEAD
+[10.0.0]: https://github.com/willmendesneto/reactor-feature-toggle/compare/v9.0.0...v10.0.0
 [9.0.0]: https://github.com/willmendesneto/reactor-feature-toggle/compare/v8.3.0...v9.0.0
 [8.3.0]: https://github.com/willmendesneto/reactor-feature-toggle/compare/v8.2.0...v8.3.0
 [8.2.0]: https://github.com/willmendesneto/reactor-feature-toggle/compare/v8.1.0...v8.2.0
