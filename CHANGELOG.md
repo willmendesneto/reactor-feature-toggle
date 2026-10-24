@@ -7,13 +7,34 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][]
 
+### Breaking Changes
+
+- Only one `FeatureToggleProvider` is allowed per application. Nested or simultaneous providers log an error via `console.error` and throw it. See "Single provider" in `README.md` and `docs/decisions/0001-single-feature-toggle-provider.md`
+- `FeatureToggle` must be rendered inside `FeatureToggleProvider`, and it throws an error otherwise. It reads the toggles from the provider instead of the global `feature-toggle-service` state
+- `FeatureToggleProvider` no longer changes the global `feature-toggle-service` state: calling `set()` from `feature-toggle-service` directly doesn't affect the components anymore. Use `set()` from `useFeatureToggle()`
+- Both entry points (`reactor-feature-toggle` and `reactor-feature-toggle/client`) are client modules (`'use client'`) exporting `FeatureToggle`, `FeatureToggleProvider` and `useFeatureToggle()`
+- Requiring `feature-toggle-service` 8 (peer dependency `^8.0.0`)
+- See "Migrating from v9" in `README.md`
+
 ### Added
 
-- Supporting `feature-toggle-service` 8: peer dependency is now `^7.0.1 || ^8.0.0`
+- `useFeatureToggle()` returns `set()`: components can change the toggles, and every consumer re-renders
+- `useFeatureToggle().isOn()` supports arrays and the `!` prefix, like `featureName`
+- Integration tests for the provider scenarios (single provider, hydration, child components changing toggles, SSR requests)
+
+### Fixed
+
+- Toggles leaked between server-side rendering requests, since they lived in the global `feature-toggle-service` state
+- Sibling providers overwrote each other's toggles, and nested providers leaked theirs to components rendered after them
+- Toggles changed via `set()` didn't update the UI, and the provider discarded them on its next render
 
 ### Updated
 
-- CI compatibility matrix also covers `feature-toggle-service` 7 and 8
+- `FeatureToggleProvider` keeps its toggles in its own `createFeatureToggleService()` instance and compares its props by value, so inline props objects don't discard changes made via `set()`
+- `react-dom` is no longer a peer dependency (the package doesn't import it)
+- Vitest config is an ES module (`vitest.config.mjs`)
+- CI aligned with `ngx-skeleton-loader`: composite setup action, actions pinned by commit SHA (updated by Dependabot) and timeouts
+- CI compatibility matrix covers Node.js 22/24 and React 18/19
 
 ## [9.0.0][] - 2026-10-24
 
