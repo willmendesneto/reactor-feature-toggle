@@ -1,0 +1,21 @@
+name: Setup project
+description: Sets up Node.js (version from `.nvmrc` by default, with npm cache) and installs the dependencies
+
+inputs:
+  node-version:
+    description: Node.js version. Defaults to the version in `.nvmrc`
+    required: false
+
+runs:
+  using: composite
+  steps:
+    - name: Set up Node.js
+      uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+      with:
+        node-version: ${{ inputs.node-version }}
+        node-version-file: ${{ inputs.node-version == '' && '.nvmrc' || '' }}
+        cache: npm
+
+    - name: Install dependencies
+      shell: bash
+      run: npm ci --no-audit --no-fund
