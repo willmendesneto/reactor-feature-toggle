@@ -7,10 +7,39 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][]
 
+### Breaking Changes
+
+- `FeatureToggleProvider` and `useFeatureToggle()` are only exported from `reactor-feature-toggle/client`. The main entry point only exports `FeatureToggle`
+- Removing the leftover `showWhenDisabled` from `FeatureToggle` props types. The prop has been ignored since 4.0.0; use the `!` prefix or `fallback` instead
+- Removing the UMD build (`dist/umd`)
+- Requiring Node.js >= 18
+- See "Migrating from v8" in `README.md`
+
+### Added
+
+- Adding `fallback` prop to `FeatureToggle`, rendered when the check fails
+- Adding package checks: `lint:package` (publint + arethetypeswrong), `size` (size-limit) and `test:smoke` (ESM, CJS and React Server Components)
+
+### Fixed
+
+- ESM build was emitted as CommonJS, so ESM consumers had no tree-shaking
+- Runtime `dependencies` included `@types/jsdom`, `iltorb` and `parse5`. The package has zero runtime dependencies now
+- Importing `reactor-feature-toggle` from React Server Components failed because it re-exported the provider
+- UMD build read React from `window.react`
+- README server-side example imported `set` from the wrong package and returned `undefined`
+
 ### Updated
 
-- Migrating from Circle CI to Github Actions
-- updated `README.md` docs
+- Migrating from Circle CI to Github Actions, testing Node 22/24 and React 18/19
+- Updated `README.md` docs
+- Building ESM (`.mjs`) and CJS (`.js`) with tsdown, with per-condition type declarations and the automatic JSX runtime
+- Migrating to ESLint 9 flat config, typescript-eslint 8 and Prettier 3
+- Upgrading to React 19, Vitest 5, Testing Library 16 and TypeScript 6 for development
+- Removing unused Babel, Rollup, UglifyJS, bundlesize, dtslint and coveralls dependencies
+
+### Security
+
+- Removing `.coveralls.yml`, which contained the Coveralls repo token
 
 ## [8.3.0][] - 2025-12-06
 
