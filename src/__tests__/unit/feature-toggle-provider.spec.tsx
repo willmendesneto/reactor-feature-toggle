@@ -1,4 +1,3 @@
-import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { FeatureToggleProvider } from '../../feature-toggle-provider';
 import { FeatureToggle } from '../../feature-toggle';
