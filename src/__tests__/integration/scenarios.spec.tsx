@@ -30,7 +30,7 @@ describe('scenarios', () => {
     it('should throw when `FeatureToggle` is rendered outside the provider', () => {
       expect(() =>
         render(<FeatureToggle featureName="feature">content</FeatureToggle>)
-      ).toThrow('FeatureToggle must be used within FeatureToggleProvider');
+      ).toThrow('useFeatureToggle must be used within FeatureToggleProvider');
     });
 
     it('should throw when `useFeatureToggle` is used outside the provider', () => {
@@ -54,16 +54,27 @@ describe('scenarios', () => {
       expect(console.error).toHaveBeenCalledWith(MULTIPLE_PROVIDERS_ERROR);
     });
 
-    it('should throw for nested providers on the server', () => {
-      expect(() =>
-        renderToString(
+    it('should detect nested providers when hydrating server-rendered markup', () => {
+      const App = () => (
+        <FeatureToggleProvider featureToggleService={{}}>
           <FeatureToggleProvider featureToggleService={{}}>
-            <FeatureToggleProvider featureToggleService={{}}>
-              <span>content</span>
-            </FeatureToggleProvider>
+            <span>content</span>
           </FeatureToggleProvider>
-        )
-      ).toThrow(MULTIPLE_PROVIDERS_ERROR);
+        </FeatureToggleProvider>
+      );
+
+      // Effects don't run on the server, so the check happens in the browser
+      const html = renderToString(<App />);
+      expect(html).toBe('<span>content</span>');
+
+      const container = document.createElement('div');
+      container.innerHTML = html;
+      document.body.appendChild(container);
+
+      expect(() => render(<App />, { container, hydrate: true })).toThrow(
+        MULTIPLE_PROVIDERS_ERROR
+      );
+      expect(console.error).toHaveBeenCalledWith(MULTIPLE_PROVIDERS_ERROR);
     });
 
     it('should throw and log an error for sibling providers', () => {

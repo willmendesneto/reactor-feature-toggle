@@ -117,7 +117,7 @@
         "react",
         "feature-toggle-service"
       ],
-      "limit": "700 B"
+      "limit": "500 B"
     },
     {
       "name": "reactor-feature-toggle/client",
@@ -127,7 +127,7 @@
         "react",
         "feature-toggle-service"
       ],
-      "limit": "700 B"
+      "limit": "500 B"
     }
   ]
 }

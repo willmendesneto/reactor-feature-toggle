@@ -2,9 +2,7 @@ import {
   createContext,
   useContext,
   useEffect,
-  useLayoutEffect,
   useMemo,
-  useRef,
   useState,
   useSyncExternalStore,
   ReactElement,
@@ -31,21 +29,10 @@ interface FeatureToggleContextType {
 const FeatureToggleContext = createContext<FeatureToggleService | null>(null);
 
 export const MULTIPLE_PROVIDERS_ERROR =
-  'reactor-feature-toggle: only one `FeatureToggleProvider` is allowed per application. ' +
-  'Render a single provider at the root of your application. ' +
-  'See https://github.com/willmendesneto/reactor-feature-toggle#single-provider';
-
-const throwMultipleProvidersError = (): never => {
-  console.error(MULTIPLE_PROVIDERS_ERROR);
-  throw new Error(MULTIPLE_PROVIDERS_ERROR);
-};
-
-// Layout effects don't run on the server, and React warns about them there
-const useIsomorphicLayoutEffect =
-  typeof window === 'undefined' ? useEffect : useLayoutEffect;
+  'Only one FeatureToggleProvider is allowed per application';
 
 // Providers mounted in the browser. Effects don't run on the server, so
-// concurrent server requests never touch this counter.
+// concurrent server requests never touch it.
 let mountedProviders = 0;
 
 /**
@@ -56,41 +43,30 @@ export const FeatureToggleProvider = ({
   children,
   featureToggleService,
 }: ReactorFeatureToggleProviderProps): ReactElement => {
-  // Nested providers are detected during render, so it also works on the server
-  if (useContext(FeatureToggleContext)) {
-    throwMultipleProvidersError();
-  }
-
   const [service] = useState(() =>
     createFeatureToggleService(featureToggleService)
   );
 
-  // Sibling providers can only be detected once they are mounted
+  // Nested or simultaneous providers are detected once they are mounted
   useEffect(() => {
-    if (mountedProviders > 0) {
-      throwMultipleProvidersError();
+    if (mountedProviders) {
+      console.error(MULTIPLE_PROVIDERS_ERROR);
+      throw new Error(MULTIPLE_PROVIDERS_ERROR);
     }
-    mountedProviders += 1;
+    mountedProviders++;
 
     return () => {
-      mountedProviders -= 1;
+      mountedProviders--;
     };
   }, []);
 
-  // Applies only the props that changed, so a new props object with the same
-  // values (e.g. an inline object) doesn't discard changes made via `set()`
-  const appliedProps = useRef(featureToggleService);
-  useIsomorphicLayoutEffect(() => {
-    const previousProps = appliedProps.current;
-    appliedProps.current = featureToggleService;
-
-    const changedProps = Object.fromEntries(
-      Object.entries(featureToggleService).filter(
-        ([key, value]) => previousProps[key] !== value
-      )
-    );
-    service.set(changedProps);
-  }, [service, featureToggleService]);
+  // Compared by value, so an inline props object with the same values doesn't
+  // discard changes made via `set()`
+  const props = JSON.stringify(featureToggleService);
+  useEffect(() => {
+    service.set(featureToggleService);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [service, props]);
 
   return (
     <FeatureToggleContext.Provider value={service}>
@@ -99,23 +75,18 @@ export const FeatureToggleProvider = ({
   );
 };
 
-const useFeatureToggleService = (caller: string): FeatureToggleService => {
+export function useFeatureToggle(): FeatureToggleContextType {
   const service = useContext(FeatureToggleContext);
   if (!service) {
-    throw new Error(`${caller} must be used within FeatureToggleProvider`);
+    throw new Error(
+      'useFeatureToggle must be used within FeatureToggleProvider'
+    );
   }
-
-  return service;
-};
-
-const useToggles = (
-  service: FeatureToggleService
-): FeatureToggleServiceConfig =>
-  useSyncExternalStore(service.subscribe, service.getAll, service.getAll);
-
-export function useFeatureToggle(): FeatureToggleContextType {
-  const service = useFeatureToggleService('useFeatureToggle');
-  const toggles = useToggles(service);
+  const toggles = useSyncExternalStore(
+    service.subscribe,
+    service.getAll,
+    service.getAll
+  );
 
   return useMemo(
     () => ({
@@ -135,17 +106,13 @@ export interface FeatureToggleProps {
 }
 
 /**
- * Renders `children` when the feature toggle(s) are on in the closest
- * `FeatureToggleProvider`, and `fallback` otherwise.
+ * Renders `children` when the feature toggle(s) are on, and `fallback` otherwise.
+ * It must be rendered inside `FeatureToggleProvider`.
  */
 export const FeatureToggle = ({
   children,
   featureName,
   fallback = null,
-}: FeatureToggleProps): ReactElement => {
-  const service = useFeatureToggleService('FeatureToggle');
-  // Re-renders when the toggles change
-  useToggles(service);
-
-  return <>{isOnCheck(service.isOn, featureName) ? children : fallback}</>;
-};
+}: FeatureToggleProps): ReactElement => (
+  <>{useFeatureToggle().isOn(featureName) ? children : fallback}</>
+);

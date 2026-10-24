@@ -29,6 +29,6 @@ Feature toggles are application-level configuration: every component of the appl
 ## Consequences
 
 - One source of truth per application, and no leaks between server requests.
-- Nested providers are detected during render, on both the client and the server. Simultaneous (sibling) providers are detected when they are mounted, on the client only, since effects don't run on the server.
+- Nested and simultaneous (sibling) providers are detected when they are mounted in the browser, including when hydrating server-rendered markup (e.g. Next.js). Effects don't run on the server, so concurrent server requests never trigger false positives. The check is a module-level counter: it adds no markup to the page and costs a few bytes.
 - Applications with more than one provider must merge them into a single provider at the root.
 - `FeatureToggle` can't be used outside the provider, e.g. reading toggles set via the global `set()` of `feature-toggle-service`.

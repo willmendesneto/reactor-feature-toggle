@@ -169,7 +169,7 @@ Changes made via `set()` are kept when the provider re-renders with the same `fe
 
 ### Single provider
 
-Only one `FeatureToggleProvider` is allowed per application. Rendering a provider inside another one, or two providers at the same time, logs an error via `console.error` and throws it.
+Only one `FeatureToggleProvider` is allowed per application. Rendering a provider inside another one, or two providers at the same time, logs an error via `console.error` and throws it. The check runs when the provider is mounted in the browser, including when hydrating server-rendered markup (e.g. Next.js).
 
 Why? Feature toggles are application-level configuration: every component must see the same values. `feature-toggle-service`, which this package is built on, is shared between the client and the server, so several providers on the client would create more problems than they solve, with toggles that differ between parts of the page and are hard to debug. Each provider keeps its toggles in its own `feature-toggle-service` instance (`createFeatureToggleService()`), so toggles never leak between server requests. See [the decision record](docs/decisions/0001-single-feature-toggle-provider.md) for more details.
 
