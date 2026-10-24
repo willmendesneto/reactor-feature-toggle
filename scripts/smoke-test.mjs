@@ -6,6 +6,7 @@ import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
 
 const reactVersion = process.env.REACT_VERSION || '19';
+const serviceVersion = process.env.FEATURE_TOGGLE_SERVICE_VERSION || '8';
 const root = resolve(import.meta.dirname, '..');
 const dir = mkdtempSync(join(tmpdir(), 'reactor-feature-toggle-'));
 
@@ -38,7 +39,7 @@ try {
     `./${filename}`,
     `react@${reactVersion}`,
     `react-dom@${reactVersion}`,
-    'feature-toggle-service@7',
+    `feature-toggle-service@${serviceVersion}`,
   ]);
 
   check(
