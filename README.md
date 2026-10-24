@@ -1,12 +1,11 @@
 # Reactor feature toggle
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/willmendesneto/reactor-feature-toggle.svg)](https://greenkeeper.io/)
 [![npm](https://img.shields.io/badge/stackblitz-online-orange.svg)](https://stackblitz.com/edit/reactor-feature-toggle-sample)
 
 [![npm version](https://badge.fury.io/js/reactor-feature-toggle.svg)](http://badge.fury.io/js/reactor-feature-toggle) [![npm downloads](https://img.shields.io/npm/dm/reactor-feature-toggle.svg)](https://npmjs.org/reactor-feature-toggle)
 
 [![Build Status](https://github.com/willmendesneto/reactor-feature-toggle/actions/workflows/ci.yml/badge.svg)](https://github.com/willmendesneto/reactor-feature-toggle/actions)
-[![Coverage Status](https://coveralls.io/repos/willmendesneto/reactor-feature-toggle/badge.svg?branch=master)](https://coveralls.io/r/willmendesneto/reactor-feature-toggle?branch=master)
+[![Coverage Status](https://coveralls.io/repos/willmendesneto/reactor-feature-toggle/badge.svg?branch=main)](https://coveralls.io/r/willmendesneto/reactor-feature-toggle?branch=main)
 
 [![NPM](https://nodei.co/npm/reactor-feature-toggle.png?downloads=true&downloadRank=true&stars=true)](https://npmjs.org/reactor-feature-toggle)
 [![NPM](https://nodei.co/npm-dl/reactor-feature-toggle.png?height=3&months=3)](https://npmjs.org/reactor-feature-toggle)
