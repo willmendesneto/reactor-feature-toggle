@@ -1,4 +1,10 @@
-import { createContext, useContext, ReactNode, useMemo } from 'react';
+import {
+  createContext,
+  useContext,
+  ReactElement,
+  ReactNode,
+  useMemo,
+} from 'react';
 import { set, isOn, FeatureToggleServiceConfig } from 'feature-toggle-service';
 
 export interface ReactorFeatureToggleProviderProps {
@@ -18,7 +24,7 @@ const FeatureToggleContext = createContext<FeatureToggleContextType | null>(
 export const FeatureToggleProvider = ({
   children,
   featureToggleService,
-}: ReactorFeatureToggleProviderProps): JSX.Element => {
+}: ReactorFeatureToggleProviderProps): ReactElement => {
   useMemo(() => {
     set(featureToggleService);
   }, [featureToggleService]);
