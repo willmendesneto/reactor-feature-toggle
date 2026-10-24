@@ -11,3 +11,4 @@ local-scripts/
 .tsbuildinfo
 *.tsbuildinfo
 .DS_Store
+*.tgz
