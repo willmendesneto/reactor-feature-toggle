@@ -1,28 +1,31 @@
 # How to start
 
-**Note** requires node v8.x.x or higher and npm 5.x.x.
+**Note** development requires the Node.js version in `.nvmrc` (run `nvm use`).
 
 ```bash
 git clone https://github.com/willmendesneto/reactor-feature-toggle.git
 cd reactor-feature-toggle
-npm install       # or `npm run reinstall` if you get an error
-npm start
+npm install
 ```
 
 # Running test
 
 ```bash
-npm test
+npm test            # unit tests
+npm run test:smoke  # installs the packed package and checks ESM/CJS/RSC
+npm run lint        # ESLint
+npm run format      # Prettier
 ```
 
 ## Submitting Pull Requests
 
 **Please follow these basic steps to simplify pull request reviews - if you don't you'll probably just be asked to anyway.**
 
-- Please rebase your branch against the current master
+- Please rebase your branch against the current `main`
 - Run `npm install` to make sure your development dependencies are up-to-date
 - Please ensure that the test suite passes **and** that code is lint free before submitting a PR by running:
-- `npm test`
+  - `npm test`
+  - `npm run lint`
 - If you've added new functionality, **please** include tests which validate its behaviour
 - Make reference to possible [issues](https://github.com/willmendesneto/reactor-feature-toggle/issues) on PR comment
 
