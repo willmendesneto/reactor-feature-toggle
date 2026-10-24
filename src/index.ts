@@ -1,2 +1,2 @@
-export * from './feature-toggle';
-export * from './feature-toggle-provider';
+export * from './feature-toggle.js';
+export * from './feature-toggle-provider.js';

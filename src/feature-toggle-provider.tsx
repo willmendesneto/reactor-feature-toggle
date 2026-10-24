@@ -1,4 +1,4 @@
-import React, { createContext, useContext, ReactNode, useMemo } from 'react';
+import { createContext, useContext, ReactNode, useMemo } from 'react';
 import { set, isOn, FeatureToggleServiceConfig } from 'feature-toggle-service';
 
 export interface ReactorFeatureToggleProviderProps {

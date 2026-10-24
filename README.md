@@ -38,14 +38,6 @@ You can get it on NPM installing `reactor-feature-toggle` module as a project de
 npm install reactor-feature-toggle --save
 ```
 
-You can also use the standalone UMD build by including `dist/reactor-feature-toggle.js` in your page. If you do this you'll also need to include the dependencies. For example:
-
-```html
-<script src="https://unpkg.com/react@<package-version></package-version>/dist/react.js"></script>
-<script src="https://unpkg.com/react-dom@<package-version>/dist/react-dom.js"></script>
-<script src="https://unpkg.com/reactor-feature-toggle/dist/umd/reactor-feature-toggle.js"></script>
-```
-
 ## Setup
 
 ### Client-side

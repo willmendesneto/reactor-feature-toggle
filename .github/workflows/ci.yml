@@ -160,5 +160,8 @@ jobs:
       - name: Build project
         run: npm run build
 
+      - name: Lint published package
+        run: npm run lint:package
+
       - name: Check bundle size
-        run: npm run bundlesize
+        run: npm run size
