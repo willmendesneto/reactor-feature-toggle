@@ -8,8 +8,6 @@ yarn.lock
 local-scripts/
 .idea
 .vscode
-.jest
-src/webpack/__tests__/__fixtures__/webpack/output
 .tsbuildinfo
 *.tsbuildinfo
 .DS_Store
